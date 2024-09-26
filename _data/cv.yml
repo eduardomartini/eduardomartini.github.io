@@ -2,96 +2,125 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Eduardo Martini
     - name: Date of Birth
-      value: 14th March 1879
+      value: 28th November 1984
     - name: Languages
-      value: English, German
+      value: Portuguese, English, French, German (sort of...)
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: PhD in Aeronautical Engineering 
+      institution: Instituto Tecnologico de Aeronautica, São José dos Campos, Brazil
+      year: 2020
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Thesis on Linear models in fluid dynamics
+        - title: Jury
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+            - Dann Henningson
+            - Ardeshir Hanifi
+            - Bruno Carmo
+        - title: Supervisor 
+          contents:
+          - Prof. André Cavalieri
+    - title: Msc. Complex Adaptive Systems
+      institution: Chalmers University of Technology, Gotemburg, Sweden
+      year: 2010
       description:
-        - Description 1.
-        - Description 2.
+        - Bio-inspired optimization
+        - Neural networks
+        - Genetic programming
+        - String theory
+        - Modelling of chemical reactions using Density functional theory (DFT)
+    - title: Physics Engineering
+      institution: Universidade Federal de São Carlos
+      year: 2007
+      description:
+        - Strong background in physics in maths
+        - title: Personal scientific projects on
+          contents:
+          - Caos theory
+          - Superconductivity
+          - Finite element method
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Assistant Professor 
+      institution: ISAE-ENSMA, Chasseneuil du Poitou, France
+      year: since 2022 
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - Research in fluid mechanics and fluid structure interaction
+        - title: Teaching activities
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+            - Fluid mechanics course
+            - Aerocoustics
+    - title: Product Engineer
+      institution: Embraer, São José dos Campos, Brazil
+      year: 2011-2016
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Mechanical conceptions
+        - Mechanical analysis
+        - Development of methodologies for fatigue and shimmy analysis
+        - Planning, execution, and reporting of qualification and certification test campaigns.
+        - title: Activities 
+          contents:
+          - Fatigue, static, and buckling analysis of mechanical system
+          - Landing gear dynamics stability analysis
+        - title: Awards
+          contents:
+          - Innovation award for the reducing the structural analysis cycle
+          - Innovation award for developing a novel concept of shimmy damper
+    - title: Development Engineer
+      institution: Equatorial Sistemas S.A.
+      year: 2007-2008
       description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+        - Development of CBER's wide field imaging sub-system.
+        - title: Activities
+          contents:
+          - Static, thermal, and vibration analysis
+          - In-house experimental campaigns for model validation
+          - Planning, execution, and reporting on certification tst campaigns.
+          - Development of ground support and optical testing equipments 
 
 - title: Open Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title:  <a href="https://github.com/LinStab2D/LinStab2D">LinStab2D</a>
+      year: 2022-now
+      description: Stability and resolvent analysis of compressible viscous flows in MATLAB
+    - title:  <a href="https://github.com/eduardomartini/Nek5000_ResolventTools">Nek5000 Resolvent Tools</a>
+      year: 2020-now
+      description: Nek5000 ResolventTools is intended as a collection of resolvent-based tools developed on top of Nek5000 code, which can be used for resolvent analysis, estimation and control of incompressible flows.
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+# - title: Honors and Awards
+#   type: time_table
+#   contents:
+#     - year: 1921
+#       items:
+#         - Nobel Prize in Physics
+#         - Matteucci Medal
+#     - year: 2029
+#       items:
+#         - Max Planck Medal
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
+    - title: Fluid Mechanics
       items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - Flow modelling
+        - Reduced order modelling
+        - Flow control
+    - title: Numerical methods
       items:
-        - Description 1.
-        - Description 2.
+        - Matrix-free approaches
+        - Estimation and control methods for large systems
+        - Wiener-Hopf methods
+        
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Hobbies:</u> Music, literature, cinema.
