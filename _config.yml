@@ -15,7 +15,7 @@ footer_text: >
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 keywords: Fluid Mechanics, Flow Control, Signal Processing, Reduced-order modelling # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: 🎓 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://eduardomartini.github.io # the base hostname & protocol for your site
 baseurl: /al-folio # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -369,7 +369,7 @@ filtered_bibtex_keywords:
     slides,
     supp,
     video,
-    website,
+    # website,
   ]
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
