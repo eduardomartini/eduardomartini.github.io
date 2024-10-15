@@ -1,33 +1,34 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"towne":
+  - firstname: ["A.", "Aaron"]
+    url: https://scholar.google.com.br/citations?user=3R2vt5UAAAAJ&hl=fr&oi=ao
 
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"jordan":
+  - firstname: ["P.", "Peter"]
+    url: https://scholar.google.com.br/citations?user=X7P6FUEAAAAJ&hl=fr
 
-"rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"colonius":
+  - firstname: ["Tim", "T."]
+    url: https://scholar.google.com.br/citations?user=zrUK8W0AAAAJ&hl=fr
 
-"bach":
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"schmidt":
+  - firstname: ["Oliver T.", "Oliver", "O. T."]
+    url: https://scholar.google.com.br/citations?user=SrkRnIYAAAAJ&hl=fr
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"cavalieri":
+  - firstname: ["André V.G.", "A. V. G.", "André V. G."]
+    url: https://scholar.google.com.br/citations?user=3IiKlfYAAAAJ&hl=fr
 
-"przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
+"karban":
+  - firstname: ["Ugur","U"]
+    url: https://scholar.google.com.br/citations?user=wHjZWbgAAAAJ&hl=fr&oi=sra
 
-"schrodinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"maia":
+  - firstname: ["Igor A.", "Igor", "I. A."]
+    url: https://scholar.google.com.br/citations?user=AyjsWgwAAAAJ&hl=fr
 
-"lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
+"nogueira":
+  - firstname: ["Petronio" , "P."]
+    url: https://scholar.google.com.br/citations?user=MklUc2wAAAAJ&hl=fr&oi=ao
 
 "planck":
   - firstname: ["Max"]
