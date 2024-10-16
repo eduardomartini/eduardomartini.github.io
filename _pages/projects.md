@@ -5,7 +5,7 @@ permalink: /projects/
 description: 
 nav: true
 nav_order: 3
-display_categories: [On going, Closed Projets]
+display_categories: [On going]
 horizontal: false
 ---
 
@@ -63,4 +63,3 @@ horizontal: false
   {% endif %}
 {% endif %}
 </div>
-
