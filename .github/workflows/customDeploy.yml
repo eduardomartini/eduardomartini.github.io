@@ -1,6 +1,10 @@
 name: Copy _site folder to gh-pages
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - main
 
 jobs:
   copy:
@@ -18,6 +22,7 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch                         # fetch branches
           git checkout $TARGET_BRANCH       # checkout to your branch
+          rm -rf *                          # remove all files
           git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           mv _site/* .                     # move the files to the root
           rm _site -r                      # remove the _site folder
