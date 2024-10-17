@@ -10,3 +10,5 @@ rm -r _site_2deploy           # remove all files from the branch
 git add -A
 git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
 git push origin $TARGET_BRANCH # push to remote branch
+
+git checkout master              # checkout to master branch
