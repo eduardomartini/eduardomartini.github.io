@@ -22,7 +22,7 @@
   
 </title>
 <meta name="author" content="Eduardo Martini">
-<meta name="description" content="An introduction on fluid mechanics">
+<meta name="description" content="An introduction to fluid mechanics">
 
   <meta name="keywords" content="Fluid Mechanics, Flow Control, Signal Processing, Reduced-order modelling">
 
@@ -248,7 +248,7 @@
 <div class="post">
   <header class="post-header">
     <h1 class="post-title">Fluid Mechanics</h1>
-    <p class="post-description">An introduction on fluid mechanics</p>
+    <p class="post-description">An introduction to fluid mechanics</p>
   </header>
 
   <article>
@@ -266,9 +266,9 @@
       https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images for info on defining 'sizes' for responsive images
     -->
     
-      <source class="responsive-img-srcset" srcset="/assets/img/FluidMechanics.jpg" sizes="95vw"></source>
+      <source class="responsive-img-srcset" srcset="/assets/img/FluidMechanics.webp" sizes="95vw"></source>
     
-    <img src="/assets/img/FluidMechanics.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="FlexFoil Cover Image" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    <img src="/assets/img/FluidMechanics.webp" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Fluid Mechanics" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
   </picture>
 
   
@@ -277,29 +277,91 @@
   </div>
 </div>
 
+<p><a href="/assets/pdf/EM-FluidMech.pdf">  <br>
+ <img src="/assets/img/icons/pdf_icon.png" style="float:right;" height="50px">
+</a></p>
+
 <p>Fluid mechanics course in aimed for master students, introducing the concepts of</p>
 <ul>
   <li>
-<strong>Conservation laws</strong> :</li>
-  <li>
-<strong>Incompressible vrs incompressible fluids</strong> :</li>
-  <li>
-<strong>Navier-Stokes equations</strong> :</li>
-  <li>
-<strong>Boundary layers</strong>
+<strong>Underlining physical principicles</strong>:
     <ul>
-      <li><strong>Kelving’s Theorem and convervation of angular momentum</strong></li>
-      <li>
-<strong>Simplified models</strong> :  Von-Karman Integral equations</li>
+      <li>Mechanic model for flow: <em>billiards fluid dynamics</em>
+</li>
+      <li>Conservation laws</li>
+      <li>Temperature</li>
+      <li>Thermodynamics review</li>
     </ul>
   </li>
   <li>
-<strong>Introduction to flow instability and transition to turbulence</strong> :</li>
+<strong>Governing equations</strong>:
+    <ul>
+      <li>Integral and differential forms</li>
+      <li>Fluid properties</li>
+      <li>Navier-Stokes equations and their different limits
+        <ul>
+          <li>Perfect and real flows</li>
+          <li>Compressible and incompressible flow</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<strong>Perfect flows</strong> :
+    <ul>
+      <li>Bernoulli equation</li>
+      <li>Kelvins theorem
+        <ul>
+          <li>Relation to the convervation of angular momentum</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+<strong>Incompressible flows</strong> :
+    <ul>
+      <li>Different flow physics
+        <ul>
+          <li>Convection</li>
+          <li>Diffusion</li>
+        </ul>
+      </li>
+      <li>Vorticity field</li>
+      <li>Flow time, velocity, and length scales</li>
+      <li>Reynolds number and flow regimes</li>
+      <li>Boundary layer
+        <ul>
+          <li>Von-Karman Integral equations</li>
+          <li>Simplified modelling</li>
+        </ul>
+      </li>
+      <li>Concepts of flow stability</li>
+    </ul>
+  </li>
   <li>
 <strong>Introduction to Turbulence</strong> :
     <ul>
-      <li><strong>Turbulence models</strong></li>
-      <li><strong>Near wall turbulence</strong></li>
+      <li>Turbulence as a stochastic process</li>
+      <li>Kolmogorov theory of (homogenious) turbulence
+        <ul>
+          <li>Turbulent scales</li>
+          <li>Energy cascade</li>
+          <li>Dissipation scales</li>
+          <li>Implications for numerical simulations</li>
+        </ul>
+      </li>
+      <li>Near wall turbulence
+        <ul>
+          <li>Flow regimes near the wall
+            <ul>
+              <li>Viscous sub-layer</li>
+              <li>Buffer layer</li>
+              <li>Log-layer</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Turbulence models</li>
     </ul>
   </li>
 </ul>
@@ -325,7 +387,7 @@
 
       
       
-        Last updated: October 16, 2024.
+        Last updated: October 18, 2024.
       
     </div>
   </footer>
@@ -594,7 +656,7 @@
               },
             },{id: "projects-aeroacoustics",
               title: 'Aeroacoustics',
-              description: "An introduction on acoustics and aeroacoustics",
+              description: "An introduction to acoustics and aeroacoustics",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/Aeroacoustics/";
                 },},{id: "projects-decrescendo",
@@ -609,7 +671,7 @@
                   window.location.href = "/projects/FlexFoil/";
                 },},{id: "projects-fluid-mechanics",
               title: 'Fluid Mechanics',
-              description: "An introduction on fluid mechanics",
+              description: "An introduction to fluid mechanics",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/FluidMechanics/";
                 },},{id: "projects-turb-cab",
