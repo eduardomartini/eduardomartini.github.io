@@ -6,13 +6,14 @@ description: Materials and notes on academic courses
 nav: true
 display_categories: [Courses]
 nav_order: 6
+horizontal: false
 ---
 
 
-<!-- pages/projects.md -->
-<div class="projects">
+<!-- pages/teaching.md -->
+<div class="teaching">
 {% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
+  <!-- Display categorized teaching -->
   {% for category in page.display_categories %}
   <a id="{{ category }}" href=".#{{ category }}">
     <h2 class="category">{{ category }}</h2>
