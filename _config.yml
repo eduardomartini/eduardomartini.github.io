@@ -254,7 +254,7 @@ keep_files:
 
 # Plug-ins
 plugins:
-  # - jekyll-latex
+  - jekyll-latex
   - jekyll-archives
   - jekyll-email-protect
   - jekyll-feed
