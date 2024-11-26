@@ -141,18 +141,6 @@
                 
                 <li class="nav-item ">
                   
-                  <a class="nav-link" href="/blog/">Blog
-                    
-                  </a>
-                </li>
-              
-            
-          
-            
-              
-                
-                <li class="nav-item ">
-                  
                   <a class="nav-link" href="/publications/">Publications
                     
                   </a>
@@ -165,7 +153,7 @@
                 
                 <li class="nav-item ">
                   
-                  <a class="nav-link" href="/projects/">Projects
+                  <a class="nav-link" href="/projects/">Projects/Teaching
                     
                   </a>
                 </li>
@@ -192,18 +180,6 @@
                   <a class="nav-link" href="/cv/">CV
                     
                       <span class="sr-only">(current)</span>
-                    
-                  </a>
-                </li>
-              
-            
-          
-            
-              
-                
-                <li class="nav-item ">
-                  
-                  <a class="nav-link" href="/teaching/">Teaching
                     
                   </a>
                 </li>
@@ -1013,7 +989,7 @@
 
       
       
-        Last updated: October 18, 2024.
+        Last updated: November 26, 2024.
       
     </div>
   </footer>
@@ -1241,22 +1217,15 @@
         handler: () => {
           window.location.href = "/";
         },
-      },{id: "nav-blog",
-              title: "Blog",
-              description: "",
-              section: "Navigation",
-              handler: () => {
-                window.location.href = "/blog/";
-              },
-            },{id: "nav-publications",
+      },{id: "nav-publications",
               title: "Publications",
               description: "",
               section: "Navigation",
               handler: () => {
                 window.location.href = "/publications/";
               },
-            },{id: "nav-projects",
-              title: "Projects",
+            },{id: "nav-projects-teaching",
+              title: "Projects/Teaching",
               description: "",
               section: "Navigation",
               handler: () => {
@@ -1276,18 +1245,22 @@
               handler: () => {
                 window.location.href = "/cv/";
               },
-            },{id: "nav-teaching",
-              title: "Teaching",
-              description: "Materials and notes on academic courses",
-              section: "Navigation",
-              handler: () => {
-                window.location.href = "/teaching/";
-              },
-            },{id: "projects-aeroacoustics",
+            },{id: "news-internship-oppening-experimental-investigation-fluid-structure-interaction-effects-on-flutter-onset",
+              title: 'Internship oppening   : experimental investigation fluid-structure interaction effects on flutter onset.',
+              description: "",
+              section: "News",},{id: "news-internship-oppening-modelling-turbulence-driven-flow-reattachment-on-suspended-cabins",
+              title: 'Internship oppening   : modelling turbulence driven flow reattachment on suspended cabins.',
+              description: "",
+              section: "News",},{id: "projects-aeroacoustics",
               title: 'Aeroacoustics',
               description: "An introduction to acoustics and aeroacoustics",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/Aeroacoustics/";
+                },},{id: "projects-block-matrix-approach",
+              title: 'Block matrix approach',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/BlockMatrixSimulations/";
                 },},{id: "projects-decrescendo",
               title: 'DECRESCENDO',
               description: "Exploring acoustic mechanisms in hydrogen flames",
@@ -1303,6 +1276,16 @@
               description: "An introduction to fluid mechanics",
               section: "Projects",handler: () => {
                   window.location.href = "/projects/FluidMechanics/";
+                },},{id: "projects-adjoint-methods",
+              title: 'Adjoint methods',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Notes_on_Adjoints/";
+                },},{id: "projects-symmetries-and-floquet-anzats",
+              title: 'Symmetries and Floquet Anzats',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Notes_on_Floquet/";
                 },},{id: "projects-turb-cab",
               title: 'TURB-Cab',
               description: "Studying and modelling the dynamic of cable cars",

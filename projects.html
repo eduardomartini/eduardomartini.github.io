@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notes on exploiting symmetries in linear analysis - (Featuring Fourier and Floquet theory)</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+   subequations: "0",
+   section: "",
+   loader: {
+      load: ['[tex]/tagformat', '[tex]/textmacros'],
+   },
+   startup: {
+      ready() {
+        // These would be replaced by import commands if you wanted to make
+        // a proper extension.
+        const Configuration = MathJax._.input.tex.Configuration.Configuration;
+        const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+        const Macro = MathJax._.input.tex.Symbol.Macro;
+        const TexError = MathJax._.input.tex.TexError.default;
+        const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+        const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //      \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+           ifstar: 'IfstarFunction',
+           ifnextchar: 'IfnextcharFunction',
+           ifblank: 'IfblankFunction',
+           ifstrequal: 'IfstrequalFunction',
+           gsubstitute: 'GsubstituteFunction',
+           seteqnumber: 'SeteqnumberFunction'
+        }, {
+           // This function implements an ifstar macro.
+           IfstarFunction(parser, name) {
+              const resultstar = parser.GetArgument(name);
+              const resultnostar = parser.GetArgument(name);
+              const star = parser.GetStar();                 // true if there is a *
+              useArgument(parser, star ? resultstar : resultnostar);
+           },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+             let whichchar = parser.GetArgument(name);
+             if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+               // $ syntax highlighting
+               whichchar = String.fromCodePoint(parseInt(whichchar));
+             }
+             const resultnextchar = parser.GetArgument(name);
+             const resultnotnextchar = parser.GetArgument(name);
+             const gotchar = (parser.GetNext() === whichchar);
+             useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+             const blankarg = parser.GetArgument(name);
+             const resultblank = parser.GetArgument(name);
+             const resultnotblank = parser.GetArgument(name);
+             const isblank = (blankarg.trim() == "");
+             useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+             const strequalfirst = parser.GetArgument(name);
+             const strequalsecond = parser.GetArgument(name);
+             const resultequal = parser.GetArgument(name);
+             const resultnotequal = parser.GetArgument(name);
+             const isequal = (strequalfirst == strequalsecond);
+             useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+             const gsubfirst = parser.GetArgument(name);
+             const gsubsecond = parser.GetArgument(name);
+             const gsubthird = parser.GetArgument(name);
+             let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+             useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                      return(MathJax.config.section + n);
+                 else
+                      return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<div class="bodywithoutsidetoc">
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<a id="Note_on_floquet-autofile-0"></a>
+
+<!--MathJax customizations:-->
+<div data-nosnippet
+    style="display:none"
+>
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+\(\require {cancel}\)
+
+\(\newcommand {\R }{\mathbb {R}}\)
+
+\(\newcommand {\C }{\mathbb {C}}\)
+
+\(\newcommand {\Z }{\mathbb {Z}}\)
+
+\(\newcommand {\mymatrix }[1]{\left [\begin {matrix}#1\end {matrix}\right ]}\)
+
+\(\newcommand {\Fourier }[1]{\mathcal {F}\left (#1\right )}\)
+
+\(\newcommand {\iFourier }[1]{\mathcal {F}^{-1}\left (#1\right )}\)
+
+\(\newcommand {\pinv }[1]{\text {pinv}\left (#1\right )}\)
+
+\(\newcommand {\Tr }[1]{Tr\left (#1\right )}\)
+
+\(\newcommand {\norm }[1]{\text {norm}\left (#1\right )}\)
+
+\(\newcommand {\ii }{\mathrm {i}}\)
+
+</div>
+
+<a id="Note_on_floquet-autopage-1"></a>
+<div class="titlepage">
+
+<h2>Notes on exploiting symmetries in linear analysis<br />
+(Featuring Fourier and Floquet theory)</h2>
+
+
+<div class="author">
+
+
+<div class="oneauthor">
+
+<p>
+Eduardo Martini
+</p>
+</div>
+
+</div>
+
+
+<div class="titledate">
+
+<p>
+November 21, 2024
+</p>
+</div>
+
+</div>
+
+<p>
+Exploiting symmetries is crucial to reduce the computational cost of solving some numerical problems, as well as to educe physical mechanisms behind its solutions. In this note, I will discuss how symmetries can be used to simplify the solution of linear differential
+equations, and in particular, how the Floquet theory can be used to simplify the solution of periodic problems.
+</p>
+
+<p>
+The results are general, but we will focus on the linearized Navier-Stokes equations, as an example. In all that follows, assume that the linear operator \(A\) is the linearized incompressible Navier-Stokes operator, and that the eigenmodes are functions of space and time,
+\(u_n(x,t)\).
+</p>
+<!--
+...... section Linear algebra background ......
+-->
+<h4 id="autosec-3"><span class="sectionnumber">1&#x2003;</span>Linear algebra background</h4>
+<a id="Note_on_floquet-autopage-3"></a>
+
+
+<p>
+To introduce the Floquet theory, it is to review some basic concepts of linear algebra. In particular, one results that is not often mentioned in the literature.
+</p>
+<div class="theoremcontents">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><span class="theoremlabel">Theorem 1 </span></span> Let \(A\) and \(B\) be two diagonalizable linear operators. If \(A\) and \(B\) commute, \(AB=BA\) then they have a common set of eigenvectors.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+This can be shown as following. Consider a set, \(v_i\), of eigenvectors of \(A\), with distinct eigenvalues \(\lambda _i\). Then, we can write \(A v_i = \lambda _i v_i\). Since \(A\) and \(B\) commute, we can write \(A(B v_i) = BA v_i = \lambda _i (B v_i)\).
+This means that \(B v_i\) is also an eigenvector of \(A\) with the same eigenvalue, and thus proportional to \(v\): \(Bv_i = \tilde {\lambda }_i v_i\), i.e., \(v_i\) is also an eigenvector of \(B\).
+</p>
+
+<p>
+The proof for the cases where the eigenvalues are not distinct is similar, but more involved. We will not discuss it here, but the result above is still valid.
+</p>
+<!--
+...... section Exploiting symmetries ......
+-->
+<h4 id="autosec-5"><span class="sectionnumber">2&#x2003;</span>Exploiting symmetries</h4>
+<a id="Note_on_floquet-autopage-5"></a>
+
+
+<p>
+The above theorem can be used to simplify the solution of linear differential equations with a given symmetry. For example, if a flow is symmetric along an axis (i.e., the 2D channel flow is symmetric along the centerline), then the linearized operator will commute with the
+symmetry operator.
+</p>
+
+<p>
+The symmetry operator \(S\) is defined as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{0}\)</span>
+
+<!--
+
+
+                                                                                                                              Su(x, y) = u(−x, y),                                                                                                                             (1)
+
+-->
+
+<p>
+
+\begin{equation}
+S u(x,y) = u(-x,y),
+\end{equation}
+
+</p>
+
+<p>
+and thus
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{1}\)</span>
+
+<!--
+
+
+                                                                                                                              S 2 u(x, y) = u(−x, y),                                                                                                                          (2)
+
+-->
+
+<p>
+
+\begin{equation}
+S^2 u(x,y) = u(-x,y),
+\end{equation}
+
+</p>
+
+<p>
+from which \(S\) has two possible eigenvalues, \(1\) and \(-1\). The corresponding eigenvectors of \(S\) are the symmetric and antisymmetric functions, respectively.
+</p>
+
+<p>
+What the theorem above shows is that we can all eigenvectors of the linearized NS operator will also be eigenvectors of the symmetry operator, and thus will either be symmetric or antisymmetric. This can be used to reduce the size of the linearized operator, and thus the
+computational cost of the solution.
+</p>
+
+<p>
+This result is probably known to you, but the above formalism allows the generalization to other symmetries.
+</p>
+<!--
+...... subsection Fourier modes ......
+-->
+<h5 id="autosec-6"><span class="sectionnumber">2.1&#x2003;</span>Fourier modes</h5>
+<a id="Note_on_floquet-autopage-6"></a>
+
+
+<p>
+Consider an operator, \(A\), which is homogenous in time, (the differential equation does not have explicit time dependence). Then the solution is invariant to time translations,
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{2}\)</span>
+
+<!--
+
+
+                                                                                                                        Au(x, t) = 0 ⇒ Au(x, t + τ ) = 0,                                                                                                   (3)
+
+-->
+
+<p>
+
+\begin{equation}
+A u(x,t) = 0 \Rightarrow A u(x,t+\tau )=0,
+\end{equation}
+
+</p>
+
+<p>
+for any \(\tau \). Consider now a translation operator, \(T_\tau \), which shifts the solution in time by \(\tau \),
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{3}\)</span>
+
+<!--
+
+
+                                                                                                                            Tτ u(x, t) = u(x, t + τ ).                                                                                                      (4)
+
+-->
+
+<p>
+
+\begin{equation}
+T_\tau u(x,t) = u(x,t+\tau ).
+\end{equation}
+
+</p>
+
+<p>
+Complex exponentia, \(u(x)e^{i\omega t}\), are form an eigen-basis for \(T_\tau \), for any value of \(\tau \), as
+</p>
+
+<p>
+\[T_\tau u(x) e^{i\omega t} = u(x) e^{i\omega (t+\tau )} = u(x) e^{i\omega t} e^{i\omega \tau },\]
+</p>
+
+<p>
+i.e., \(u(x) e^{i\omega t}\) is an eigenvector of \(T_\tau \) with eigenvalue \(e^{i\omega \tau }\).
+</p>
+
+<p>
+Now, since \(A\) and \(T_\tau \) commute, we can use the theorem above to show that the eigenvectors of \(A\) are also eigenvectors of \(T_\tau \). This means that the eigenvectors of \(A\) are of the form \(u(x)e^{i\omega t}\), i.e., Fourier modes.
+</p>
+<!--
+...... subsection Floquet theory ......
+-->
+<h5 id="autosec-7"><span class="sectionnumber">2.2&#x2003;</span>Floquet theory</h5>
+<a id="Note_on_floquet-autopage-7"></a>
+
+
+<p>
+Consider now a periodic flow, for which the solution is periodic in time, \(u(x,t+T) = u(x,t)\), for one specific value of \(\tau \). Now the operator commutes with \(T_{\tau }\) for \(\tau =T\) <em>only</em>.
+</p>
+
+<p>
+The eigenvector of \(T_T\) can be written as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{4}\)</span>
+
+<!--
+
+
+                                                                                                            un (x, t) = h(t, x)eiωn t ,   with h(t + T, x) = h(t, x),                                                                                                   (5)
+
+-->
+
+<p>
+
+\begin{equation}
+u_n(x,t) = h(t,x)e^{i \omega _n t}, \quad \text { with } h(t+T,x) = h(t,x),
+\end{equation}
+
+</p>
+
+<p>
+such that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{5}\)</span>
+
+<!--
+
+
+                                                                                                                          TT un (x, t) = eiωn T un (x, t).                                                                                                              (6)
+
+-->
+
+<p>
+
+\begin{equation}
+T_T u_n(x,t) = e^{i\omega _n T} u_n(x,t).
+\end{equation}
+
+</p>
+
+<p>
+Thus, any eigenvector of \(A\) can be written as \(u_n(x,t) = h(t,x)e^{i \omega _n t}\), with \(h(t+T,x) = h(t,x)\), i.e., a term periodic in time, and a complex exponential. Note that this means that even if the flow is periodic, the eigenvectors are not (necessary)
+periodic in time. Most importantly, any eigenvector of \(A\) can be written as \(h(t,x)e^{i \omega _n t}\): this is known as the <em>Floquet anzats</em>. Therefore, one can solve only for \(h(t,x)\), on a finite domain, and then multiply by the complex exponential to
+obtain the full solution, valid for any \(t\).
+</p>
+
+<p>
+Another aspect to keep in mind is that the description of the eigenvectors is not unique, i.e.,
+</p>
+
+<p>
+\[h(t,x)e^{i \omega _n t} = \left ( h(t,x) e^{i m \frac {2\pi }{T} t} \right ) e^{i \left (\omega _n-m \frac {2\pi }{T}\right ) t} = \tilde {h}(t,x)e^{i \tilde {\omega }_n t}.\]
+</p>
+
+<p>
+The basis is only uniquely defined if we impose that \(0\le \Re (\omega _n)&lt;2\pi /T\), thus preventing the above ambiguity. However, when solving a problem numerically, this condition may be hard to impose, and thus the basis may not be unique, and we may find
+multiple identical solutions to the problem.
+</p>
+
+<p>
+That is, a “unique” solution, with \(0\le \Re (\omega _n)&lt;2\pi /T\), will be equivalent to another solutions with \(2p\pi /T \le \Re (\omega _n)&lt;2(p+1)\pi /T\). I will call these “Floquet bands” (ps: I made up this name).
+</p>
+<!--
+...... subsubsection Example: channel flow stability ......
+-->
+<h6 id="autosec-8"><span class="sectionnumber">2.2.1&#x2003;</span>Example: channel flow stability</h6>
+<a id="Note_on_floquet-autopage-8"></a>
+
+
+<p>
+Figure <a href="index-0.html#fig:fourrier">1a</a> shows the spectra for a 2D channel flow, with a Reynolds number of 10000, for a streamwise value number of \(1\). The flow is made non-dimensional using the channel half-width, and the streamwise velocity at the
+centerline. The flow is stationary, and thus the problem is time-invariant: i.e., the eigenvectors are Fourier modes in time.
+</p>
+
+<p>
+As a time invariant flow is a particular case of a periodic flow, we can use the Floquet anzats instead. Treating the flow as a periodic flow with period \(T=\pi \), we can use the Floquet anzats to solve the problem. Figure <a href="index-0.html#fig:floquet1">1b</a>
+shows the specrta using the Floquet anzats. We can see that the Fourier spectra can be seen on each Floquet band, and that the Floquet bands are separated by \(2\pi /T=2\). From the discussion in the previous section, we can see that these modes are equivalent, and
+that the Floquet bands are a consequence of the non-uniqueness of the basis.
+</p>
+
+<p>
+In the above, the non-uniqueness is still quite simple and easy to tear apart. By further increasing the period, e.g., \(T=4\pi \), the spectra becomes more complex, as as each “copy” of the Fourier spectra now overlaps. This is shown in Figure <a
+href="index-0.html#fig:floquet2">1c</a>.
+</p>
+
+<figure id="autoid-1" class="figure ">
+<div class="center">
+<div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; ">
+
+<a id="Note_on_floquet-autopage-10"></a>
+
+
+
+<p>
+
+<a href="Figures/Channel_Fourrier.png" target="_blank" ><img
+     src="Figures/Channel_Fourrier.png"
+     style="
+     width:130pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+
+<div class="figurecaption">
+
+(a) <a id="fig:fourrier"></a> Fourrier Anzats
+
+</div>
+
+</div>
+<div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; ">
+
+<a id="Note_on_floquet-autopage-11"></a>
+
+
+
+<p>
+
+<a href="Figures/Floquet_pi.png" target="_blank" ><img
+     src="Figures/Floquet_pi.png"
+     style="
+     width:130pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+
+<div class="figurecaption">
+
+(b) Floquet Anzats, \(T=\pi \)<a id="fig:floquet1"></a>
+
+</div>
+
+</div>
+<div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; ">
+
+<a id="Note_on_floquet-autopage-12"></a>
+
+
+
+<p>
+
+<a href="Figures/Floquet_4pi.png" target="_blank" ><img
+     src="Figures/Floquet_4pi.png"
+     style="
+     width:130pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+
+<div class="figurecaption">
+
+(c) Floquet Anzats, \(T=4\pi \)<a id="fig:floquet2"></a>
+
+</div>
+
+</div>
+
+
+<div class="figurecaption">
+Figure&nbsp;1: Spectra for a 2D channel flow, using Fourier (a), and Floquet (b,c) anzates.
+
+</div>
+
+<a id="fig:floquet"></a>
+
+</div>
+
+</figure>
+
+<a id="Note_on_floquet-autofile-last"></a>
+</section>
+
+</main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <!-- Metadata, OpenGraph and Schema.org -->
+
+
+
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>
+  
+  
+    
+      Adjoint methods | Eduardo Martini
+    
+  
+</title>
+<meta name="author" content="Eduardo Martini">
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+  <meta name="keywords" content="Fluid Mechanics, Flow Control, Signal Processing, Reduced-order modelling">
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap & MDB -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+<!-- Bootstrap Table -->
+
+
+<!-- Fonts & Icons -->
+<link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5">
+<link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+
+<!-- Code Syntax Highlighting -->
+<link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light">
+
+
+  <!-- Sidebar Table of Contents -->
+  <link defer href="/assets/css/bootstrap-toc.min.css?6f5af0bb9aab25d79b2448143cbeaa88" rel="stylesheet">
+
+
+<!-- Styles -->
+
+<!-- pseudocode -->
+
+
+
+  <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%8E%93&lt;/text&gt;&lt;/svg&gt;">
+
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="canonical" href="http://0.0.0.0:8080/projects/Notes_on_Adjoints/">
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+
+  <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
+  <script>
+    initTheme();
+  </script>
+
+
+<!-- GeoJSON support via Leaflet -->
+
+
+<!-- diff2html -->
+
+
+
+
+
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+    <!-- Header -->
+    <header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+    <div class="container">
+      
+        <a class="navbar-brand title font-weight-lighter" href="//">
+          Eduardo Martini
+        </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          
+
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home
+              
+            </a>
+          </li>
+
+          <!-- Other pages -->
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  
+                  <a class="nav-link" href="/publications/">Publications
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item active">
+                  
+                  <a class="nav-link" href="/projects/">Projects/Teaching
+                    
+                      <span class="sr-only">(current)</span>
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  
+                  <a class="nav-link" href="/repositories/">Repositories
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  
+                  <a class="nav-link" href="/cv/">CV
+                    
+                  </a>
+                </li>
+              
+            
+          
+          
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+              </button>
+            </li>
+          
+          
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" title="Change theme">
+                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+              </button>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  
+</header>
+
+
+    <!-- Content -->
+    <div class="container mt-5" role="main">
+      
+        
+          <div class="row">
+            <!-- sidebar, which will move to the top on a small screen -->
+            <div class="col-sm-3">
+              <nav id="toc-sidebar" class="sticky-top"></nav>
+            </div>
+            <!-- main content area -->
+            <div class="col-sm-9">
+
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">Adjoint methods</h1>
+    <p class="post-description"></p>
+  </header>
+
+  <article>
+    
+
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+   subequations: "0",
+   section: "",
+   loader: {
+      load: ['[tex]/tagformat', '[tex]/textmacros'],
+   },
+   startup: {
+      ready() {
+        // These would be replaced by import commands if you wanted to make
+        // a proper extension.
+        const Configuration = MathJax._.input.tex.Configuration.Configuration;
+        const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+        const Macro = MathJax._.input.tex.Symbol.Macro;
+        const TexError = MathJax._.input.tex.TexError.default;
+        const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+        const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //      \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+           ifstar: 'IfstarFunction',
+           ifnextchar: 'IfnextcharFunction',
+           ifblank: 'IfblankFunction',
+           ifstrequal: 'IfstrequalFunction',
+           gsubstitute: 'GsubstituteFunction',
+           seteqnumber: 'SeteqnumberFunction'
+        }, {
+           // This function implements an ifstar macro.
+           IfstarFunction(parser, name) {
+              const resultstar = parser.GetArgument(name);
+              const resultnostar = parser.GetArgument(name);
+              const star = parser.GetStar();                 // true if there is a *
+              useArgument(parser, star ? resultstar : resultnostar);
+           },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+             let whichchar = parser.GetArgument(name);
+             if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+               // $ syntax highlighting
+               whichchar = String.fromCodePoint(parseInt(whichchar));
+             }
+             const resultnextchar = parser.GetArgument(name);
+             const resultnotnextchar = parser.GetArgument(name);
+             const gotchar = (parser.GetNext() === whichchar);
+             useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+             const blankarg = parser.GetArgument(name);
+             const resultblank = parser.GetArgument(name);
+             const resultnotblank = parser.GetArgument(name);
+             const isblank = (blankarg.trim() == "");
+             useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+             const strequalfirst = parser.GetArgument(name);
+             const strequalsecond = parser.GetArgument(name);
+             const resultequal = parser.GetArgument(name);
+             const resultnotequal = parser.GetArgument(name);
+             const isequal = (strequalfirst == strequalsecond);
+             useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+             const gsubfirst = parser.GetArgument(name);
+             const gsubsecond = parser.GetArgument(name);
+             const gsubthird = parser.GetArgument(name);
+             let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+             useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                      return(MathJax.config.section + n);
+                 else
+                      return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+
+
+
+
+<div class="bodywithoutsidetoc">
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<a id="Note_on_adjoints-autofile-0"></a>
+
+<!--MathJax customizations:-->
+<div data-nosnippet style="display:none">
+
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber "#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar "\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+\(\require {cancel}\)
+
+\(\newcommand {\R }{\mathbb {R}}\)
+
+\(\newcommand {\C }{\mathbb {C}}\)
+
+\(\newcommand {\Z }{\mathbb {Z}}\)
+
+\(\newcommand {\mymatrix }[1]{\left [\begin {matrix}#1\end {matrix}\right ]}\)
+
+\(\newcommand {\Fourier }[1]{\mathcal {F}\left (#1\right )}\)
+
+\(\newcommand {\iFourier }[1]{\mathcal {F}^{-1}\left (#1\right )}\)
+
+\(\newcommand {\pinv }[1]{\text {pinv}\left (#1\right )}\)
+
+\(\newcommand {\Tr }[1]{Tr\left (#1\right )}\)
+
+\(\newcommand {\norm }[1]{\text {norm}\left (#1\right )}\)
+
+\(\newcommand {\ii }{\mathrm {i}}\)
+
+</div>
+
+<a id="Note_on_adjoints-autopage-1"></a>
+<div class="titlepage">
+
+<!-- <h1>Notes on adjoints, and their use on numerical optimization methods</h1> -->
+
+
+<div class="author">
+
+
+<div class="oneauthor">
+
+<p>
+Eduardo Martini
+</p>
+</div>
+
+</div>
+
+
+<div class="titledate">
+
+<p>
+November 4, 2024
+</p>
+</div>
+
+</div>
+<!--
+...... section Lagrange multipliers formalism for the optima ......
+-->
+<h4>
+<span class="sectionnumber">1 </span>Lagrange multipliers formalism for the optima </h4>
+<a id="Note_on_adjoints-autopage-3"></a>
+
+<p>
+We aim to maximize \(\mathcal {I}(q)\), subject to the constraint \(\mathcal {N}(q,f)=0\). The Lagrange functional is
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{0}\)</span>
+
+
+<!--
+
+                                                                                                                                      Z
+                                                                                                                       L = I(q) +         q + (N (q) − f ) dV                                                                                                          (1)
+                                                                                                                                      Ω
+
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\mathcal {L} = \mathcal {I}(q) + \int _\Omega q^+ \left (\mathcal {N}(q)-f\right ) dV
+\end{align}
+where \(q^+\) is “just” a multiplier for now. To maximize \(\mathcal {L}\), we need to impose that any changes \(q\to q+ \delta q\) and \(f\to f+\delta f\) which respect \(N(q+\delta q,f+\delta f)=0\), have zero no order impact on \(\mathcal {L}\).
+</p>
+
+<p>
+The “derivative” of the functional \(\mathcal {I}(q)\) can be written as
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{1}\)</span>
+
+
+<!--
+
+
+                                                                                                                     I(q + ϵδq) − I(q)
+                                                                                                                                                       Z
+                                                                                                                                         dI                dI
+                                                                                                                                       =    = δq              δq,                                                                                                      (2)
+                                                                                                                             ϵ           dq                dq
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\frac {\mathcal {I}(q+\epsilon \delta q) - \mathcal {I}(q)}{\epsilon } = \dfrac {d \mathcal {I}}{dq}= \delta q \int \dfrac {d I}{dq} \delta q ,
+\end{align}
+where \(\dfrac {d \mathcal {I}}{dq} \delta q \) becomes an operator that, once applied to a function (\(\delta q\)), gives the (linear, if \(\epsilon \to 0\)) change in \(\mathcal {I}\). Being linear, this change can be expressed as an integral of \(\delta q\)
+multiplied by a factor \(I\) (to be determined for each problem).
+</p>
+
+<p>
+The conditions for a stationary point of the functional are
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{2}\)</span>
+
+
+<!--
+
+
+                                                                                                                                Z
+                                                                                                             ∂L      ∂I(q)            ∂N (q)
+                                                                                                                δq =       δq + q +          δqdV
+                                                                                                             ∂q        ∂q              ∂q
+                                                                                                                                                    !                                                                                                                  (3)
+                                                                                                                                         ∂N (q) + +
+                                                                                                                     Z              Z
+                                                                                                                        ∂I(q)
+                                                                                                                   =          δqV +               q   δqdV = 0
+                                                                                                                          ∂q               ∂q
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} \dfrac {\partial \mathcal {L}}{\partial q}\delta q &amp;= \dfrac {\partial \mathcal {I}(q)}{\partial q} \delta q + \int q^+ \dfrac {\partial \mathcal {N}(q)}{\partial q}\delta q dV \\ &amp;= \int \dfrac {\partial
+I(q)}{\partial q} \delta q V + \int \left ( \left .\dfrac {\partial \mathcal {N}(q)}{\partial q}\right |^+ q^+\right ) \delta q dV =0 \end {aligned}
+\end{align}
+and <sup>1</sup>
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{3}\)</span>
+
+
+<!--
+
+                                                                                                                                  Z
+                                                                                                                      ∂L +
+                                                                                                                           δq =       (N (q) − f ) δq + dV = 0                                                                                                         (4)
+                                                                                                                      ∂q +
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {\partial \mathcal {L}}{\partial q^+} \delta q^+ &amp;= \int \left (\mathcal {N}(q)-f\right )\delta q^+ dV= 0
+\end{align}
+
+</p>
+
+<p>
+To find a minima, both equations needs to be zero for <em>any</em> \(\delta u\) and \(\delta u^+\), thu we need that
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{4}\)</span>
+
+
+<!--
+
+
+                                                                                                                          ∂I(q)   ∂N (q) + +
+                                                                                                                                +         δq = 0                                                                                                                       (5)
+                                                                                                                           ∂q      ∂q
+                                                                                                                                               N (q) = f                                                                                                               (6)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {\partial I(q)}{\partial q} + \left .\dfrac {\partial \mathcal {N}(q)}{\partial q}\right |^+ \delta q^+ =0 \\ \mathcal {N}(q) =f
+\end{align}
+
+</p>
+
+<p>
+The “problem” with the above is that it forces us to solve a non-linear problem to find the optima: what is the \(f\) that gives the \(u\) such that the minima is obtained.
+</p>
+
+<p>
+For numerical implementation, a gradient descent method can be used.
+</p>
+
+<!--
+...... section Gradient descent via Lagrange multipliers ......
+-->
+<h4 id="autosec-5">
+<span class="sectionnumber">2 </span>Gradient descent via Lagrange multipliers</h4>
+<a id="Note_on_adjoints-autopage-5"></a>
+
+
+<p>
+To construct a cost functional to be used on a gradient descent method, we aim to find \(\delta q\) and \(\delta f\) that maximize the change in the target functional \(\mathcal {I}\). The change in this functional is given by \(\mathcal {I}(q+\delta q)-\mathcal
+{I}(q)\). We also want to impose that \(\delta f\) is small. To maximize this, while still satisfying the constraint \(\mathcal {N}(q,f)=0\), we use the Lagrange functional
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{6}\)</span>
+
+
+<!--
+
+
+                                                                                                                         Z                                        Z       
+                                                                                                L = I(q + δq) − I(q) +    δq + (N (q + δq) − (f + δf )) dV + λ ϵ2 − δf 2 dx ,
+                                                                                                    Z                                                               Z      
+                                                                                                       I(q + δq) − I(q) + δq + (N (q + δq) − (f + δf )) dV + λ ϵ2 − δf 2 dx ,
+                                                                                                                                                        
+                                                                                                  =
+                                                                                                    Z 
+                                                                                                        I(q)
+                                                                                                                       
+                                                                                                                         dN
+                                                                                                                                                    Z                                                                                                                     (7)
+                                                                                                  =          δq + δq +       δq + δf    dV + λ ϵ2 − δf 2 dx ,
+                                                                                                         ∂q              dq
+                                                                                                                                !             !
+                                                                                                                     dN + +
+                                                                                                    Z                                                        Z      
+                                                                                                        I(q)
+                                                                                                  =          δq +           δq    δq + δu+ δf dV + λ ϵ2 − δf 2 dx ,
+                                                                                                         ∂q           dq
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} \mathcal {L} &amp;= \mathcal {I}(q+\delta q) - \mathcal {I}(q) + \int \delta q^+ \left ( \mathcal {N}(q+\delta q)-(f+\delta f)\right ) dV + \lambda \left ( \epsilon ^2 - \int \delta f^2 dx \right ), \\ &amp; = \int \left (
+I(q+\delta q) - I(q) + \delta q^+\left ( \mathcal {N}(q+\delta q)-(f+\delta f)\right )\right ) dV + \lambda \left ( \epsilon ^2 - \int \delta f^2 dx \right ), \\ &amp; = \int \left ( \dfrac {I(q)}{\partial q} \delta q + \delta q^+ \left (
+\dfrac {d\mathcal {N}}{dq}\delta q + \delta f \right ) \right )dV + \lambda \left ( \epsilon ^2 - \int \delta f^2 dx \right ), \\ &amp; = \int \left ( \dfrac {I(q)}{\partial q} \delta q + \left ( \left . \dfrac {d\mathcal {N}}{dq} \right
+|^+ \delta q^+\right )\delta q + \delta u^+\delta f \right )dV + \lambda \left ( \epsilon ^2 - \int \delta f^2 dx \right ), \end {aligned}
+\end{align}
+which, on the first line, imposes botht hat \(N(q+\delta q,f + \delta f)=0\) is satisfied, but also that, that \(f\) is small (norm \(\epsilon \)), and thus that, assuming that \(\mathcal {N}\) is well-behaved, that \(\delta q\) is also small. On the following lines, we
+assumed that the variations are small, and thus that the operators can be linearized. Finally, on the last line, we use the definition of the adjoint.
+</p>
+
+<p>
+To find a stationary point of this cost functional, we have
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{eq}{7}\)</span>
+
+
+<!--
+
+                                                                                                                                                  !
+                                                                                                                                         dN + +
+                                                                                                                                Z
+                                                                                                                     ∂L             ∂I
+                                                                                                                         δq =          +       δq   δqdV = 0                                                                                                                  (8)
+                                                                                                                     ∂δq       Ω    ∂q    dq
+                                                                                                                              Z          
+                                                                                                                  ∂L               dN
+                                                                                                                       δq + =          − f dV = 0                                                                                                                             (9)
+                                                                                                                 ∂δq +             dq
+                                                                                                                              Z
+                                                                                                                    ∂L
+                                                                                                                                  δu+ − λδf dV = 0
+                                                                                                                                             
+                                                                                                                         δf =                                                                                                                                                (10)
+                                                                                                                   ∂δf
+                                                                                                                                   Z
+                                                                                                                        ∂L
+                                                                                                                            = ϵ2 − δf 2 dV = 0                                                                                                                               (11)
+                                                                                                                        ∂λ
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {\partial \mathcal {L}}{\partial \delta q} \delta q &amp; = \int _\Omega \left ( \dfrac {\partial I}{\partial q}+ \left .\dfrac {d\mathcal {N}}{dq} \right |^+ \delta q^+\right ) \delta q dV =0 \\ \dfrac {\partial \mathcal
+{L}}{\partial \delta q^+} \delta q^+&amp;=\int \left (\dfrac {d \mathcal {N}}{dq} -f \right )dV =0 \\ \dfrac {\partial \mathcal {L}}{\partial \delta f} \delta f&amp;=\int \left (\delta u^+ -\lambda \delta f \right )dV =0 \\ \dfrac
+{\partial \mathcal {L}}{\partial \lambda } &amp;=\epsilon ^2 - \int \delta f^2 dV =0
+\end{align}
+which are satisfied For
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{11}\)</span>
+
+
+<!--
+
+
+                                                                                                                                    dN + +       ∂I
+                                                                                                                                        δq = −                                                                      (12)                   --><a id="eq:adjoint_GD"></a><!--
+                                                                                                                                    dq           ∂q
+                                                                                                                                       dN
+                                                                                                                                          δq = f                                                                                                                             (13)
+                                                                                                                                       dq
+                                                                                                                                          δu+ = λδf                                                                                                                          (14)
+                                                                                                                                    Z
+                                                                                                                                          2     2
+                                                                                                                                        δf dV = ϵ                                                                                                                            (15)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\label {eq:adjoint_GD} \left .\dfrac {d\mathcal {N}}{dq} \right |^+ \delta q^+&amp;= - \dfrac {\partial I}{\partial q} \\ \dfrac {d \mathcal {N}}{dq} \delta q&amp;= f \\ \delta u^+ &amp;= \lambda \delta f \\ \int \delta f^2 dV
+&amp;=\epsilon ^2
+\end{align}
+which correspond, respectivelly, to the adjoint problem (forced by the “how the target \(I\) changes with variations in \(q\)”, which gives the sensitivity of \(\mathcal {I}\) to changes in \(q\), i.e., \(\delta u^+\)), the constraint, the relation between \(\delta f\) and
+\(\delta u^+\), the relation beween the sensitivity and how the forcing should be applied, and the constraint on the norm of \(\delta f\).
+</p>
+
+<p>
+To optimize for singular values, we need to compute how \(\mathcal {I}(q) = \sigma _1\) changes with \(\delta q\).
+</p>
+<!--
+...... section Sensitivity of singular values ......
+-->
+<h4 id="autosec-6">
+<span class="sectionnumber">3 </span>Sensitivity of singular values</h4>
+<a id="Note_on_adjoints-autopage-6"></a>
+
+
+<p>
+We start from the SVD decomposition of the resolvent operator
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{15}\)</span>
+
+
+<!--
+
+
+                                                                                                                              R(q) = U (q)Σ(q)V (q)H ,                                                               (16)                      --><a id="eq:svd"></a><!--
+
+
+-->
+
+
+<p>
+
+\begin{align}
+R(q) = U(q)\Sigma (q) V(q)^H, \label {eq:svd}
+\end{align}
+all of which are functions of \(q\), ommited from now on for clarity. We assume a change in \(q = q_0 + \epsilon q_1\), and expand every term in orders of \(\epsilon \):
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{16}\)</span>
+
+
+<!--
+
+
+                                                                                                                                R = R0 + ϵR1 + · · · ,                                                                                                                    (17)
+                                                                                                                                 V = V0 + ϵV1 + · · · ,                                                                                                                   (18)
+                                                                                                                                Σ = Σ0 + ϵΣ1 + · · · ,                                                                                                                    (19)
+                                                                                                                                U = U0 + ϵU1 + · · · .                                                                                                                    (20)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+R = R_0 + \epsilon R_1 + \cdots , \\ V = V_0 + \epsilon V_1 + \cdots , \\ \Sigma = \Sigma _0 + \epsilon \Sigma _1 + \cdots , \\ U = U_0 + \epsilon U_1 + \cdots .
+\end{align}
+Note that \(V\) has to be ortonormal, i.e., \(V^HV = I\). This gives
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{20}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                       V HV = I                                                                                                           (21)
+                                                                                                                                        H
+                                                                                                                      (V0 + ϵV1 + · · · ) (V0 + ϵV1 + · · · ) = I,                                                                                                        (22)
+                                                                                                                                                  
+                                                                                                                       V0H V0 + ϵ V1H V0 + V0H V1 + · · · = I,                                                                                                            (23)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+V^HV &amp;= I \\ (V_0 + \epsilon V_1 +\cdots )^H(V_0 + \epsilon V_1+\cdots ) &amp;= I,\\ V_0^H V_0 + \epsilon \left ( V_1^H V_0 + V_0^H V_1 \right ) +\cdots &amp;= I,
+\end{align}
+from which
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{23}\)</span>
+
+
+<!--
+
+
+                                                                                                                                  V0H V1 = −V1H V0 .                                                                                                                      (24)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+V_0^H V_1 =- V_1^H V_0.
+\end{align}
+i.e., the matrix is anti-simmetric, and thus all the diagonal terms are zero. That means that \((v_i)_0^H(v_i)_1=0\), i.e., the first order correction to the forcing modes is ortogonal to the modes themselves. A similar argument shows that \((u_i)_0^H(u_i)_1=0\).
+</p>
+
+<p>
+Expanding <span class="textup">(<a href="index-0.html#eq:svd">16</a>)</span>, we have
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{24}\)</span>
+
+
+<!--
+
+                                                                                                                                                             
+                                                                                                           R = U0 Σ0 V0H + ϵ U1 Σ0 V0H + U0 Σ1 V0H + U0 Σ0 V1H + · · ·                                                                                                    (25)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+R = U_0\Sigma _0 V_0^H + \epsilon \left ( U_1\Sigma _0 V_0^H + U_0\Sigma _1 V_0^H + U_0\Sigma _0 V_1^H \right ) + \cdots
+\end{align}
+Multipling by \(U_0^H\) from the left, and by \(V_0\) from the right, we have
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{25}\)</span>
+
+
+<!--
+
+
+                                                                                     (ui )H                           H         H
+                                                                                          0 (R0 + ϵR1 ) (vi )0 = (ui )0 U1 Σ0 V0 (ui )0
+                                                                                                                                                                                          
+                                                                                                               + ϵ (ui )H         H              H         H              H         H
+                                                                                                                        0 U1 Σ0 V0 (vi )0 + (ui )0 U0 Σ1 V0 (vi )0 + (ui )0 U0 Σ0 V1 (vi )0 + · · ·                                                                       (26)
+                                                                                                                                       2
+                                                                                                              = (σi )0 + ϵ(σi )1 + O(ϵ )     ···
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} (u_i)_0^H \left (R_0+\epsilon R_1\right ) (v_i)_0 &amp;= (u_i)_0^H U_1 \Sigma _0 V_0^H (u_i)_0 \\&amp; + \epsilon \Big ( (u_i)_0^H U_1\Sigma _0 V_0^H (v_i)_0 + (u_i)_0^H U_0\Sigma _1 V_0^H (v_i)_0 + (u_i)_0^H U_0\Sigma _0
+V_1^H (v_i)_0 \Big ) + \cdots \\ &amp; = (\sigma _i)_0 + \epsilon (\sigma _i)_1 + O(\epsilon ^2) \quad \cdots \end {aligned}
+\end{align}
+and thus, the linear correction for \(\sigma _i\) is
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{26}\)</span>
+
+
+<!--
+
+
+                                                                                                                               (σi )1 = (ui )H
+                                                                                                                                             0 R1 (vi )0 .                                                          (27)                    --><a id="eq:Sigma1"></a><!--
+
+
+-->
+
+
+<p>
+
+\begin{align}
+(\sigma _i)_1 = (u_i)_0^H R_1(v_i)_0.       \label {eq:Sigma1}
+\end{align}
+
+</p>
+
+<p>
+An expression for \(R_1\) is obtined as
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{27}\)</span>
+
+
+<!--
+
+
+                                                                                                                              R(q + ϵδq) − R(q)   dR(q)
+                                                                                                                       R1 =                     =       δq.                                                                                                               (28)
+                                                                                                                                      ϵ            dq
+
+
+-->
+
+
+<p>
+
+\begin{align}
+R_1 = \dfrac { R(q + \epsilon \delta q) - R(q )}{\epsilon } = \dfrac {d R(q)}{d q} \delta q.
+\end{align}
+
+</p>
+
+<p>
+As \(R(q)=L^{-1}(q)=(i\omega - A(q))^{-1}\), we have<sup>2</sup>
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{28}\)</span>
+
+
+<!--
+
+                                                                                                                                                        
+                                                                                                                        dR(q)                    dL(q)
+                                                                                                                              δq = −R(q)               δq R(q).                                              (29)                             --><a id="eq:dRdq"></a><!--
+                                                                                                                         dq                       dq
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {d R(q)}{d q}\delta q = -R(q) \left (\dfrac {d L(q)}{d q}\delta q\right ) R(q).              \label {eq:dRdq}
+\end{align}
+
+</p>
+
+<p>
+From <span class="textup">(<a href="index-0.html#eq:Sigma1">27</a>)</span> and <span class="textup">(<a href="index-0.html#eq:dRdq">29</a>)</span>,
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{29}\)</span>
+
+
+<!--
+
+                                                                                                                                                   
+                                                                                                                                           dL(q)
+                                                                                                                    (σ1 )1 = −(u1 )H0 R0          δq R0 (q)(v1 )0                                                                                                         (30)
+                                                                                                                                             dq
+                                                                                                                                                   
+                                                                                                                                           dL(q)
+                                                                                                                           = −σ12 (v1 )H
+                                                                                                                                       0         δq (u1 )0                                            (31)                                  --><a id="eq:dsigma"></a><!--
+                                                                                                                                            dq
+
+
+-->
+
+
+<p>
+
+\begin{align}
+(\sigma _1)_1&amp; =-(u_1)_0^H R_0 \left (\dfrac {d L(q)}{d q}\delta q\right ) R_0(q) (v_1)_0 \\ &amp;= -\sigma _1^2 (v_1)_0^H \left (\dfrac {d L(q)}{d q}\delta q\right ) (u_1)_0 \label {eq:dsigma}
+\end{align}
+
+</p>
+
+<p>
+These expression can be used in <span class="textup">(<a href="index-0.html#eq:adjoint_GD">12</a>)</span> to complete the formulation.
+</p>
+<div role="note" class="footnotes">
+
+<a id="Note_on_adjoints-autopage-7"></a>
+<p>
+<sup>2</sup> This comes from the derivative of the identity \(A^{-1}A=I\).
+</p>
+
+
+</div>
+<!--
+...... section Multiobjective optimization ......
+-->
+<h4 id="autosec-8">
+<span class="sectionnumber">4 </span>Multiobjective optimization</h4>
+<a id="Note_on_adjoints-autopage-8"></a>
+
+
+<p>
+Here we want to optimize
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{31}\)</span>
+
+
+<!--
+
+                                                                                                                                        Z
+                                                                                                              L = I(q) + ασ1 (R(q)) +       q + (N (q))dV,   (32)
+                                                                                                                                        Ω
+
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\mathcal {L} = \mathcal {I}(q) + \alpha \sigma _1(R(q)) + \int _\Omega q^+ (\mathcal {N}(q)) dV,
+\end{align}
+where \(\alpha \) is a trade-off parameter that selects “how much more imporant is \(\sigma _1\) compared to \(\mathcal {I}\)”.
+</p>
+<!--
+...... section Test problem: Coupled Non-linear Burgers and Linear Ginsburg-Landau equations ......
+-->
+<h4 id="autosec-9">
+<span class="sectionnumber">5 </span>Test problem: Coupled Non-linear Burgers and Linear Ginsburg-Landau equations</h4>
+<a id="Note_on_adjoints-autopage-9"></a>
+
+
+<p>
+We use the following problem to demostrate the procedure
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{32}\)</span>
+
+
+<!--
+
+
+                                                                                                                         ∂u    ∂2u
+                                                                                                                        u   − ν 2 = f,                                                            (33)                      --><a id="eq:burgers"></a><!--
+                                                                                                                         ∂x    ∂x
+                                                                                                                   ∂q    ∂q    ∂2q
+                                                                                                                      −u    + ν 2 = 0.                                                                   (34)                     --><a id="eq:GL"></a><!--
+                                                                                                                   ∂t    ∂x    ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\label {eq:burgers} u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 u}{\partial x^2} &amp; = f, \\ \label {eq:GL} \frac {\partial q}{\partial t} - u \frac {\partial q}{\partial x} + \nu \frac {\partial ^2 q}{\partial x^2}
+&amp;= 0.
+\end{align}
+
+</p>
+
+<p>
+The goal here is to maximize the largest singular/eigen value of <span class="textup">(<a href="index-0.html#eq:GL">34</a>)</span> by changing \(f\) in <span class="textup">(<a href="index-0.html#eq:burgers">33</a>)</span>.
+</p>
+<!--
+...... subsection Optimization of the singular value ......
+-->
+<h5 id="autosec-10">
+<span class="sectionnumber">5.1 </span>Optimization of the singular value</h5>
+<a id="Note_on_adjoints-autopage-10"></a>
+
+
+<p>
+To modify \(f \to f+\delta f\), we use a gradient descent approach to determine \(\delta f\), i.e., the direction of \(\delta f\) which leads to the largest impact in \(\sigma _1(\omega )\), where
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{eq}{34}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                                                                        σ1    0     ···
+                                                                                                                                                                                                                                         
+                                                                                                    −1
+                                                                                                 ∂2
+                                                                                   
+                                                                                            ∂                                                                                                                         0      σ2    · · ·
+                                                                       U ΣV H = R = −iω − u    +ν 2     ,                                                                                                           Σ=                                                         (35)
+                                                                                                                                                                                                                         ..    ..
+                                                                                                                                                                                                                                          
+                                                                                            ∂x   ∂x                                                                                                                                 ..
+                                                                                                                                                                                                                          .     .       .
+
+
+-->
+
+
+<p>
+
+\begin{align}
+U \Sigma V^H &amp; = R = \left (-i\omega - u \frac {\partial }{\partial x} + \nu \frac {\partial ^2 }{\partial x^2} \right )^{-1} ,&amp; \Sigma &amp;= \mymatrix {\sigma _1 &amp; 0 &amp; \cdots \\ 0 &amp; \sigma _2 &amp; \cdots \\ \vdots
+&amp; \vdots &amp; \ddots }
+\end{align}
+
+</p>
+
+<p>
+We thus write the cost function we seek to optimize, adding a langrangian multiplier to enfoce that \(u\) satisfies Burger’s equation
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{35}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                  ∂2u
+                                                                                                                                           Z                                
+                                                                                                                                                             ∂u
+                                                                                                                     L = σ1 (u) +               u+       u      −ν 2 −f          dx                                    (36)                      --><a id="eq:NLfunctional"></a><!--
+                                                                                                                                                             ∂x   ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\mathcal {L} = \sigma _1(u) + \int u^+ \left ( u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 u}{\partial x^2} - f \right ) dx \label {eq:NLfunctional}
+\end{align}
+
+</p>
+
+<p>
+We aim to modify \(f \to f+\delta f\) in order to maximize \(\sigma _1\). Deriving w.r.t. \(u^+\) and \(u\) gives
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{36}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                                                               ∂ 2 δu
+                                                                                                                                                                               Z                                    
+                                                                        ∂L                                                                                                            ∂σ1            ∂(uδu)
+                                                                           δu = 0 ⇒                                                                                                       δu + δu+          −ν      2
+                                                                                                                                                                                                                         dx = 0,                                                (37)
+                                                                        ∂u                                                                                                            ∂u               ∂x      ∂x
+                                                                         ∂L
+                                                                                                                                                                                              Z 
+                                                                                                                                                                                                    ∂u      2
+                                                                                                                                                                                                          ∂ u
+                                                                                                                                                                                                                   
+                                                                             =0⇒                                                                                                         (38)     u    − ν 2 − f δu+ dx = 0,                  --><a id="eq:dL/ddeltauplus"></a><!--
+                                                                        ∂δu+                                                                                                                        ∂x    ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {\partial \mathcal {L}}{\partial u} \delta u &amp;= 0 \Rightarrow &amp; \int \left ( \frac {\partial \sigma _1 }{\partial u }\delta u + \delta u^+ \left ( \frac {\partial (u \delta u) }{\partial x} - \nu \frac {\partial ^2 \delta u
+}{\partial x^2} \right ) \right ) dx &amp;= 0, \\ \label {eq:dL/ddeltauplus} \dfrac {\partial \mathcal {L}}{\partial \delta u^+} &amp;= 0 \Rightarrow &amp; \int \left (u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 u}{\partial
+x^2} -f\right ) \delta u^+ dx &amp;= 0,
+\end{align}
+intgrating by parts we get
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{38}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                                  L
+                                                                                                              ∂u+    ∂ 2 δu+                                                 ∂δu+
+                                                                                                 Z                                                            
+                                                                                                       ∂σ1                                                         ∂u +
+                                                                                                           −u     −ν                        δudx + ν −uu+ δu + ν      δu + u                                                                                                    (39)
+                                                                                                       ∂u      ∂x      ∂x2                                         ∂x         ∂x    0
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} \int \left ( \frac {\partial \sigma _1 }{\partial u } - u \frac {\partial u ^+ }{\partial x} - \nu \frac {\partial ^2 \delta u^+ }{\partial x^2} \right )\delta u dx + \nu \left [- uu^+\delta u + \nu \left ( \frac {\partial
+u}{\partial x}\delta u^+ + u\frac {\partial \delta u^+}{\partial x} \right ) \right ]_0^L \end {aligned}
+\end{align}
+thus to the optimallity conditions
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{39}\)</span>
+
+
+<!--
+
+
+                                                                                                                                       ∂u+     ∂ 2 δu+   ∂σ1
+                                                                                                                                   u        +ν         =                                                                                                                        (40)
+                                                                                                                                        ∂x       ∂x2     ∂u
+                                                                                                                                           ∂u      ∂2u
+                                                                                                                                         u    − ν 2 = f,                                                                                                                        (41)
+                                                                                                                                           ∂x      ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+u \frac {\partial u^+ }{\partial x} + \nu \frac {\partial ^2 \delta u^+ }{\partial x^2} &amp; = \frac {\partial \sigma _1 }{\partial u } \\ u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 u}{\partial x^2} &amp; = f,
+\end{align}
+with boundary conditions \(u^+(0)=u^+(L)=0\) and \(u(0)=u(L)=0\).
+</p>
+
+<p>
+However the above is a non-linear system of equations. To approach it numeriicaly, one option is to use a gradient descent approach. The goal is to find the optimal small force increment \(\delta f\), with \(||\delta f||=\epsilon \). The corrsponding changes to \(u\)
+and \(\sigma _1\) are of order \(\epsilon \) as well. The functional <span class="textup">(<a href="index-0.html#eq:NLfunctional">36</a>)</span> is then modified as
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{41}\)</span>
+
+
+<!--
+
+
+                                                                                                         L = σ1 (u + δu) − σ1 (u+)
+                                                                                                                                             ∂ 2 (u + δu)
+                                                                                                             Z                                                       
+                                                                                                                                ∂(u + δu)
+                                                                                                           + δu+ (u + δu)                 −ν              − (f + δf(42)dx
+                                                                                                                                                                    )                                                                         --><a id="eq:NLfunctional_GD"></a><!--
+                                                                                                                                   ∂x             ∂x2
+                                                                                                                    Z
+                                                                                                           + λ ϵ2 − δf 2 dx
+                                                                                                                              
+
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} \mathcal {L} &amp; = \sigma _1(u+\delta u)-\sigma _1(u+) \\ &amp; + \int \delta u^+ \left ( (u+\delta u) \frac {\partial (u+\delta u) }{\partial x} - \nu \frac {\partial ^2 (u+\delta u)}{\partial x^2} - (f+\delta f) \right
+) dx \\ &amp;+ \lambda \Big (\epsilon ^2 - \int \delta f^2 dx \big ) \label {eq:NLfunctional_GD} \end {aligned}
+\end{align}
+
+</p>
+
+<p>
+By linearizing the functional (keeping order 1 terms only), gives
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{42}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                  ∂ 2 δu
+                                                                                                  Z                                                                                 Z                  
+                                                                                                        ∂σ1 (u)                    ∂δu      ∂u
+                                                                                             L=                 δu + δu+       u       + δu    −ν        − δf                  dx + λ        δf 2 dx − ϵ2       .                                                               (43)
+                                                                                                          ∂u                       ∂x       ∂x    ∂x2
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\mathcal {L} = \int \left ( \dfrac {\partial \sigma _1(u )}{\partial u}\delta u + \delta u^ + \left ( u \frac {\partial \delta u }{\partial x} + \delta u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 \delta u}{\partial x^2} -
+\delta f \right )\right ) dx + \lambda \left ( \int \delta f^2dx - \epsilon ^2 \right ).
+\end{align}
+
+</p>
+
+<p>
+Derivating w.r.t. \(\delta u\), \(\delta u^+\), \(\delta f\) and \(\lambda \) we have (note that the variation in \(\delta u\) is \(\delta (\delta u)\). Messy notation, sorry...)
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{43}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                                                                  ∂ 2 δ(δu)
+                                                                                                                                                                    Z                                                     
+                                                                    ∂L                                                                                                  ∂σ1                ∂δ(δu)      δ(δu)
+                                                                        δ(δu) = 0 ⇒                                                                               (44)      δ(δu) + δu+ u         + δu         −ν              dx = 0,             --><a id="eq:dL/ddeltau"></a><!--
+                                                                    ∂δu                                                                                                 ∂u                   ∂x         ∂x           ∂x2
+                                                                                                                                                                                                          ∂ 2 δu
+                                                                                                                                                                                     Z 
+                                                                ∂L                                                                                                                        ∂δu      ∂u                  
+                                                                    δ(δu+ ) = 0 ⇒                                                                                                       u     + δu    −ν         − δf δ(δu+ )dx = 0,                                            (45)
+                                                               ∂δu+                                                                                                                       ∂x       ∂x      ∂x2
+                                                                                                                                                                                                         Z 
+                                                                  ∂L                                                                                                                                                     
+                                                                      δ(δf ) = 0 ⇒                                                                                (46)                                        δu+ + λf δ(δf )dx = 0,               --><a id="eq:dL/ddeltaf"></a><!--
+                                                                  ∂δf
+                                                                      ∂L                                                                                                                                     Z               
+                                                                         δλ = 0 ⇒                                                                                  (47)                                   δλ      δf 2 dx − ϵ2 dx = 0.              --><a id="eq:dL/lambda"></a><!--
+                                                                      ∂λ
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\label {eq:dL/ddeltau} \dfrac {\partial \mathcal {L}}{\partial \delta u} \delta (\delta u) &amp;= 0 \Rightarrow &amp; \int \left ( \frac {\partial \sigma _1 }{\partial u }\delta (\delta u) + \delta u^+ \left ( u \frac {\partial \delta
+(\delta u)}{\partial x} + \delta u \frac {\delta (\delta u) }{\partial x} - \nu \frac {\partial ^2 \delta (\delta u) }{\partial x^2} \right ) \right ) dx &amp;= 0, \\ \dfrac {\partial \mathcal {L}}{\partial \delta u^+} \delta (\delta u^+)
+&amp;= 0 \Rightarrow &amp; \int \Big (u \frac {\partial \delta u }{\partial x} + \delta u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 \delta u}{\partial x^2} - \delta f\Big )\delta (\delta u^+)dx &amp;=0, \\ \label
+{eq:dL/ddeltaf} \dfrac {\partial \mathcal {L}}{\partial \delta f} \delta (\delta f)&amp;= 0 \Rightarrow &amp; \int \Big (\delta u^+ + \lambda f\Big ) \delta (\delta f) dx &amp;= 0, \\ \label {eq:dL/lambda} \dfrac {\partial \mathcal
+{L}}{\partial \lambda } \delta \lambda &amp;= 0 \Rightarrow &amp; \delta \lambda \Big ( \int \delta f^2 dx - \epsilon ^2\Big ) dx &amp;=0.
+\end{align}
+
+</p>
+
+<p>
+Equation <span class="textup">(<a href="index-0.html#eq:dL/ddeltau">44</a>)</span> will give rise to the adjoint equation, from which we will compute \(\delta u^+\); using <span class="textup">(<a href="index-0.html#eq:dL/ddeltaf">46</a>)</span>, we
+know that the forcing modification \(\delta f\) should be proportional to \(\delta u^+\), with equation <span class="textup">(<a href="index-0.html#eq:dL/lambda">47</a>)</span> showing that the multiplication constant needs to be choosen so that the norm of
+\(\delta f\) is \(\epsilon \). Finally, <span class="textup">(<a href="index-0.html#eq:dL/ddeltauplus">45</a>)</span> will give us the modification \(\delta u\), caused by \(\delta f\), which that leads to the largest increase in \(\sigma _1\).
+</p>
+
+<p>
+Using previous results we get the following system of equations
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{47}\)</span>
+
+
+<!--
+
+
+                                                                                                                                  ∂u+      ∂ 2 δu+    ∂σ1
+                                                                                                                                       +ν
+                                                                                                                                        u           =                                                                                                                           (48)
+                                                                                                                                   ∂x        ∂x2       ∂u
+                                                                                                                             ∂δu      ∂u     ∂ 2 δu
+                                                                                                                           u     + δu    −ν         = δf                                                                                                                        (49)
+                                                                                                                             ∂x       ∂x      ∂x2
+                                                                                                                                                  +
+                                                                                                                                               δu = −λf                                                                                                                         (50)
+                                                                                                                                         Z
+                                                                                                                                            δf 2 dx = ϵ2                                                                                                                        (51)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+u \frac {\partial u^+ }{\partial x} + \nu \frac {\partial ^2 \delta u^+ }{\partial x^2} &amp; = \frac {\partial \sigma _1 }{\partial u } \\ u \frac {\partial \delta u }{\partial x} + \delta u \frac {\partial u }{\partial x} - \nu \frac
+{\partial ^2 \delta u}{\partial x^2} &amp;= \delta f \\ \delta u^+ &amp;= - \lambda f \\ \int \delta f^2 dx &amp;= \epsilon ^2
+\end{align}
+again, with boundary conditions \(u^+(0)=u^+(L)=u(0)=u(L)=0\). Again, the first equation is used to calculate \(\delta u^+\),i.e., the sensitivity of \(\sigma _1\) to changes in \(u\). The third equation shows that \(\delta f\) must be proportional to \(\delta u^+\),
+the second equation gives a (linear) prediction of how \(u\) will be affected by a force increment of \(\delta f\), and finally the latter constrains the norm of \(\delta f\).
+</p>
+
+<p>
+The only missing ingridient is an explicit formula for \(d \sigma _1/d \delta u\). From the previous sections, <span class="textup">(<a href="index-0.html#eq:dsigma">31</a>)</span>,
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{51}\)</span>
+
+
+<!--
+
+
+                                                                                                                                    dσ1          dLGL
+                                                                                                                                        δq = v0H      u0 δq,                                                                                                                    (52)
+                                                                                                                                    du            du
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {d \sigma _1}{d u} \delta q = v_0^H \dfrac {d L_{GL}}{d u} u_0 \delta q,
+\end{align}
+which reads
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{eq}{52}\)</span>
+
+
+<!--
+
+
+                                                                                                                 Z                      Z                
+                                                                                                                     dσ1                         dL(u)
+                                                                                                                         δudx =                −σ12 v0∗δu u0 dx                                                                                                                 (53)
+                                                                                                                     du                           dδu
+                                                                                                                                                   + ϵδu) − L(u)
+                                                                                                                                     Z
+                                                                                                                                               L(u
+                                                                                                                                    = −σ12 v0∗                   u0 dx                                                                                                          (54)
+                                                                                                                                                       ϵ
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\int \dfrac {d \sigma _1}{d u} \delta u dx = &amp; \int -\sigma _1^2 v_0^* \left (\dfrac {d L(u)}{d \delta u}\delta u\right ) u_0 dx \\= &amp; \int -\sigma _1^2 v_0^* \frac {L(u+\epsilon \delta u) - L (u)}{\epsilon } u_0 dx
+\end{align}
+
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{eq}{54}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                                ∂ 2 u0
+                                                                                                                                                                      
+                                                                                                                                                 ∂u0
+                                                                                                          (L(u + ϵδu) − L(u + ϵ)) u0 = (u + ϵδu)     + µu0 − ν       2
+                                                                                                                                                                                                                                                                                (55)
+                                                                                                                                                 ∂x             ∂x
+                                                                                                                                                       ∂ 2 u0
+                                                                                                                                                             
+                                                                                                                                         ∂u0
+                                                                                                                                     − u     + µu0 − ν                                                                                                                          (56)
+                                                                                                                                         ∂x             ∂x2
+                                                                                                                                              
+                                                                                                                                           ∂u0
+                                                                                                                                     =ϵ δu                                                                                                                                      (57)
+                                                                                                                                           ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\left (L(u+\epsilon \delta u) - L(u+\epsilon )\right ) u_0 =&amp; \left ( (u+\epsilon \delta u) \frac {\partial u_0 }{\partial x} + \mu u_0 -\nu \frac {\partial ^2 u_0}{\partial x^2} \right ) \\-&amp; \left ( u \frac {\partial u_0
+}{\partial x} + \mu u_0 -\nu \frac {\partial ^2 u_0}{\partial x^2} \right ) \\ =&amp; \epsilon \left ( \delta u \frac {\partial u_0 }{\partial x} \right )
+\end{align}
+Thus
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{57}\)</span>
+
+
+<!--
+
+
+                                                                                                                     Z                         Z               
+                                                                                                                         dσ1                           dL(u)
+                                                                                                                             δudx =                −σ12 v0∗  δu u0 dx                                                                                                           (58)
+                                                                                                                         du                             dδu
+                                                                                                                                           Z                 
+                                                                                                                                                         ∂u0
+                                                                                                                                         = −σ12 v0∗ δu          dx                                                                                                              (59)
+                                                                                                                                                          ∂x
+                                                                                                                                           Z              
+                                                                                                                                                       ∂u0
+                                                                                                                                         =    −σ12 v0∗       δudx                                                                                                               (60)
+                                                                                                                                                       ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\int \dfrac {d \sigma _1}{d u} \delta u dx = &amp; \int -\sigma _1^2 v_0^* \left (\dfrac {d L(u)}{d \delta u}\delta u\right ) u_0 dx \\= &amp; \int -\sigma _1^2 v_0^* \left ( \delta u \frac {\partial u_0 }{\partial x} \right ) dx \\=
+&amp; \int \left ( -\sigma _1^2 v_0^* \frac {\partial u_0 }{\partial x} \right ) \delta u dx
+\end{align}
+
+</p>
+
+<p>
+Which finally gives the full adjoint problem
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{60}\)</span>
+
+
+<!--
+
+
+                                                                                                                                   ∂δu+    ∂ 2 δu+           ∂u1
+                                                                                                                           −u           −ν         = σ12 u∗1     ,                                                                                                              (61)
+                                                                                                                                    ∂x       ∂x2             ∂x
+
+
+-->
+
+
+<p>
+
+\begin{align}
+-u \frac {\partial \delta u^+ }{\partial x} -\nu \frac {\partial ^2 \delta u^+ }{\partial x^2} &amp;= \sigma _1^2 u_1^* \frac {\partial u_1}{\partial x} ,
+\end{align}
+where \(u_1\) and \(v_1\) are the leading resolvent modes of the GL system for the current \(u\).
+</p>
+<!--
+...... subsection Imposing real and ......
+-->
+<h5 id="autosec-11">
+<span class="sectionnumber">5.2 </span>Imposing real \(u\) and \(f\)</h5>
+<a id="Note_on_adjoints-autopage-11"></a>
+
+
+<p>
+If we assume that the Burger’s problem is real, we need to constrain \(\delta u\) to real values: in the previous section, the resolvent modes are complex, and thus the changes in \(\delta u\) can be complex as well. For that, we further modify the langrangian,
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{61}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                  ∂ 2 δu
+                                                                                                            Z                                               
+                                                                                                               ∂σ1 (u)            ∂δu      ∂u
+                                                                                                       L=              δu + δu+ u     + δu     −ν      2
+                                                                                                                                                         − δf    dx
+                                                                                                                 ∂u               ∂x       ∂x     ∂x
+                                                                                                              Z              Z                                                                                                                                        (62)
+                                                                                                         + λ1    δf 2 dx − ϵ2 + λ2 (δf ∗ − δf )dx
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} \mathcal {L} &amp; = \int \left ( \dfrac {\partial \sigma _1(u )}{\partial u}\delta u + \delta u^ + \left ( u \frac {\partial \delta u }{\partial x} + \delta u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2
+\delta u}{\partial x^2} - \delta f \right )\right ) dx \\ &amp;+ \lambda _1 \left ( \int \delta f^2dx - \epsilon ^2 \right ) + \int \lambda _2 (\delta f^* - \delta f) dx \end {aligned}
+\end{align}
+from where we obtain
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{62}\)</span>
+
+
+<!--
+
+
+                                                                          ∂L                                                                                                ∂u+     ∂ 2 δu+      ∂σ1
+                                                                              δ(δu) = 0 ⇒ · · ·                                                                            u     +ν          =−                                                                         (63)
+                                                                          ∂δu                                                                                                ∂x       ∂x2         ∂u
+                                                                        ∂L                                                                                             ∂δu      ∂u    ∂ 2 δu
+                                                                            δ(δu+ ) = 0 ⇒ · · ·                                                                      u     + δu    −ν        = δf,                                                                      (64)
+                                                                       ∂δu+                                                                                            ∂x       ∂x     ∂x2
+                                                                          ∂L
+                                                                              δ(δf ) = 0 ⇒ · · ·                                                                               δu+ + λ1 f + λ2 = 0,                                                                     (65)
+                                                                          ∂δf
+                                                                                                                                                                                     Z
+                                                                            ∂L
+                                                                                δλ1 = 0 ⇒ · · ·                                                                                          δf 2 dx = ϵ2 ,                                                                 (66)
+                                                                           ∂λ1
+                                                                            ∂L
+                                                                                δλ2 = 0 ⇒ · · ·                                                                                       δf ∗ − δf = 0.                                                                    (67)
+                                                                           ∂λ2
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {\partial \mathcal {L}}{\partial \delta u} \delta (\delta u) &amp;= 0 \Rightarrow \cdots &amp; u \frac {\partial u^+ }{\partial x} + \nu \frac {\partial ^2 \delta u^+ }{\partial x^2} &amp; = -\frac {\partial \sigma _1 }{\partial u
+} \\ \dfrac {\partial \mathcal {L}}{\partial \delta u^+} \delta (\delta u^+)&amp;= 0 \Rightarrow \cdots &amp; u \frac {\partial \delta u }{\partial x} + \delta u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 \delta u}{\partial
+x^2} &amp;= \delta f, \\ \dfrac {\partial \mathcal {L}}{\partial \delta f} \delta (\delta f)&amp;= 0 \Rightarrow \cdots &amp; \delta u^+ + \lambda _1 f + \lambda _2 &amp;= 0, \\ \dfrac {\partial \mathcal {L}}{\partial \lambda _1} \delta
+\lambda _1 &amp;= 0 \Rightarrow \cdots &amp; \int \delta f^2 dx &amp;= \epsilon ^2, \\ \dfrac {\partial \mathcal {L}}{\partial \lambda _2} \delta \lambda _2 &amp;= 0 \Rightarrow \cdots &amp; \delta f^* - \delta f &amp;= 0.
+\end{align}
+where \(\lambda _2\) enforces that \(f=f^*\) (\(f\) is real), and \(\lambda _1\); as before, imposes the norm of \(f\).
+</p>
+<!--
+...... section Penalize ......
+-->
+<h4 id="autosec-12">
+<span class="sectionnumber">6 </span>Penalize \(f\)</h4>
+<a id="Note_on_adjoints-autopage-12"></a>
+
+
+<span class="hidden"> \(\seteqnumber{0}{eq}{67}\)</span>
+
+
+<!--
+
+
+                                                                                                                                                    ∂ 2 δu
+                                                                                               Z                                                            
+                                                                                                   ∂σ1 (u)      α                    ∂δu      ∂u
+                                                                                          L=               δu + (f + δf )2 + δu+ u       + δu    −ν        − δf    dx
+                                                                                                     ∂u          2                   ∂x       ∂x    ∂x2
+                                                                                                Z               Z                                                                                                                       (68)
+                                                                                           + λ1     δf 2 dx − ϵ2 + λ2 (δf ∗ − δf )dx
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\begin{aligned} \mathcal {L} &amp; = \int \left ( \left [ \dfrac {\partial \sigma _1(u )}{\partial u}\delta u + \frac {\alpha }{2} (f+\delta f)^2 \right ] + \delta u^ + \left ( u \frac {\partial \delta u }{\partial x} + \delta u \frac
+{\partial u }{\partial x} - \nu \frac {\partial ^2 \delta u}{\partial x^2} - \delta f \right )\right ) dx \\ &amp;+ \lambda _1 \left ( \int \delta f^2dx - \epsilon ^2 \right ) + \int \lambda _2 (\delta f^* - \delta f) dx \end {aligned}
+\end{align}
+from where we obtain
+</p>
+<span class="hidden"> \(\seteqnumber{0}{eq}{68}\)</span>
+
+
+<!--
+
+
+                                                                 ∂L                                                                                            ∂u+     ∂ 2 δu+      ∂σ1
+                                                                     δ(δu) = 0 ⇒ · · ·                                                                        u     +ν          =−      − αf 2                                            (69)
+                                                                 ∂δu                                                                                            ∂x       ∂x2         ∂u
+                                                               ∂L                                                                                         ∂δu      ∂u    ∂ 2 δu
+                                                                   δ(δu+ ) = 0 ⇒ · · ·                                                                  u     + δu    −ν        = δf,                                                     (70)
+                                                              ∂δu+                                                                                        ∂x       ∂x     ∂x2
+                                                                 ∂L
+                                                                     δ(δf ) = 0 ⇒ · · ·                                                                  δu+ + λ1 δf + λ2 + αf = 0,                                                       (71)
+                                                                 ∂δf
+                                                                                                                                                                      Z
+                                                                   ∂L
+                                                                       δλ1 = 0 ⇒ · · ·                                                                                   δf 2 dx = ϵ2 ,                                                   (72)
+                                                                  ∂λ1
+                                                                   ∂L
+                                                                       δλ2 = 0 ⇒ · · ·                                                                                  δf ∗ − δf = 0.                                                    (73)
+                                                                  ∂λ2
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\dfrac {\partial \mathcal {L}}{\partial \delta u} \delta (\delta u) &amp;= 0 \Rightarrow \cdots &amp; u \frac {\partial u^+ }{\partial x} + \nu \frac {\partial ^2 \delta u^+ }{\partial x^2} &amp; = -\frac {\partial \sigma _1 }{\partial u
+} - \alpha f^2 \\ \dfrac {\partial \mathcal {L}}{\partial \delta u^+} \delta (\delta u^+)&amp;= 0 \Rightarrow \cdots &amp; u \frac {\partial \delta u }{\partial x} + \delta u \frac {\partial u }{\partial x} - \nu \frac {\partial ^2 \delta
+u}{\partial x^2} &amp;= \delta f, \\ \dfrac {\partial \mathcal {L}}{\partial \delta f} \delta (\delta f)&amp;= 0 \Rightarrow \cdots &amp; \delta u^+ + \lambda _1 \delta f + \lambda _2 + \alpha f&amp;= 0, \\ \dfrac {\partial \mathcal
+{L}}{\partial \lambda _1} \delta \lambda _1 &amp;= 0 \Rightarrow \cdots &amp; \int \delta f^2 dx &amp;= \epsilon ^2, \\ \dfrac {\partial \mathcal {L}}{\partial \lambda _2} \delta \lambda _2 &amp;= 0 \Rightarrow \cdots &amp; \delta f^* -
+\delta f &amp;= 0.
+\end{align}
+
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{eq}{73}\)</span>
+
+
+<!--
+
+
+                                                                                                                    λ1 δf = δu+ + λ2 − αf                                                                                                 (74)
+
+
+-->
+
+
+<p>
+
+\begin{align}
+\lambda _1 \delta f = \delta u^+ + \lambda _2 - \alpha f
+\end{align}
+where \(\alpha \) is a penalization term for \(f\).
+</p>
+
+<a id="Note_on_adjoints-autofile-last"></a>
+</section>
+
+</main>
+
+</div>
+
+
+
+
+
+  </article>
+
+  
+
+  
+</div>
+</div>
+          </div>
+        
+      
+    </div>
+
+    <!-- Footer -->
+    
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      © Copyright 2024
+      Eduardo
+      
+      Martini. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      
+      
+        Last updated: November 26, 2024.
+      
+    </div>
+  </footer>
+
+
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/assets/js/mdb.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+  <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+  <!-- Sidebar Table of Contents -->
+  <script defer src="/assets/js/bootstrap-toc.min.js?c82ff4de8b0955d6ff14f5b05eed7eb6"></script>
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+
+
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams',
+        },
+      };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
+
+    
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0TMHQ241C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-C0TMHQ241C');
+  </script>
+
+
+
+
+    
+  <!-- Scrolling Progress Bar -->
+  <script type="text/javascript">
+    /*
+     * This JavaScript code has been adapted from the article
+     * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
+     * published on the website https://css-tricks.com on the 7th of May, 2014.
+     * Couple of changes were made to the original code to make it compatible
+     * with the `al-foio` theme.
+     */
+    const progressBar = $('#progress');
+    /*
+     * We set up the bar after all elements are done loading.
+     * In some cases, if the images in the page are larger than the intended
+     * size they'll have on the page, they'll be resized via CSS to accomodate
+     * the desired size. This mistake, however, breaks the computations as the
+     * scroll size is computed as soon as the elements finish loading.
+     * To account for this, a minimal delay was introduced before computing the
+     * values.
+     */
+    window.onload = function () {
+      setTimeout(progressBarSetup, 50);
+    };
+    /*
+     * We set up the bar according to the browser.
+     * If the browser supports the progress element we use that.
+     * Otherwise, we resize the bar thru CSS styling
+     */
+    function progressBarSetup() {
+      if ('max' in document.createElement('progress')) {
+        initializeProgressElement();
+        $(document).on('scroll', function () {
+          progressBar.attr({ value: getCurrentScrollPosition() });
+        });
+        $(window).on('resize', initializeProgressElement);
+      } else {
+        resizeProgressBar();
+        $(document).on('scroll', resizeProgressBar);
+        $(window).on('resize', resizeProgressBar);
+      }
+    }
+    /*
+     * The vertical scroll position is the same as the number of pixels that
+     * are hidden from view above the scrollable area. Thus, a value > 0 is
+     * how much the user has scrolled from the top
+     */
+    function getCurrentScrollPosition() {
+      return $(window).scrollTop();
+    }
+
+    function initializeProgressElement() {
+      let navbarHeight = $('#navbar').outerHeight(true);
+      $('body').css({ 'padding-top': navbarHeight });
+      $('progress-container').css({ 'padding-top': navbarHeight });
+      progressBar.css({ top: navbarHeight });
+      progressBar.attr({
+        max: getDistanceToScroll(),
+        value: getCurrentScrollPosition(),
+      });
+    }
+    /*
+     * The offset between the html document height and the browser viewport
+     * height will be greater than zero if vertical scroll is possible.
+     * This is the distance the user can scroll
+     */
+    function getDistanceToScroll() {
+      return $(document).height() - $(window).height();
+    }
+
+    function resizeProgressBar() {
+      progressBar.css({ width: getWidthPercentage() + '%' });
+    }
+    // The scroll ratio equals the percentage to resize the bar
+    function getWidthPercentage() {
+      return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+    }
+  </script>
+
+
+    
+
+    
+
+    
+
+    
+  <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
+  <script>
+    addBackToTop();
+  </script>
+
+
+    
+  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
+  <script>
+    let searchTheme = determineComputedTheme();
+    const ninjaKeys = document.querySelector('ninja-keys');
+
+    if (searchTheme === 'dark') {
+      ninjaKeys.classList.add('dark');
+    } else {
+      ninjaKeys.classList.remove('dark');
+    }
+
+    const openSearchModal = () => {
+      // collapse navbarNav if expanded on mobile
+      const $navbarNav = $('#navbarNav');
+      if ($navbarNav.hasClass('show')) {
+        $navbarNav.collapse('hide');
+      }
+      ninjaKeys.open();
+    };
+  </script>
+  <script>
+    // get the ninja-keys element
+    const ninja = document.querySelector('ninja-keys');
+
+    // add the home and posts menu items
+    ninja.data = [{
+        id: "nav-home",
+        title: "Home",
+        section: "Navigation",
+        handler: () => {
+          window.location.href = "/";
+        },
+      },{id: "nav-publications",
+              title: "Publications",
+              description: "",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/publications/";
+              },
+            },{id: "nav-projects-teaching",
+              title: "Projects/Teaching",
+              description: "",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/projects/";
+              },
+            },{id: "nav-repositories",
+              title: "Repositories",
+              description: "Public repositories related to research activities.",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/repositories/";
+              },
+            },{id: "nav-cv",
+              title: "CV",
+              description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/cv/";
+              },
+            },{id: "news-internship-oppening-experimental-investigation-fluid-structure-interaction-effects-on-flutter-onset",
+              title: 'Internship oppening   : experimental investigation fluid-structure interaction effects on flutter onset.',
+              description: "",
+              section: "News",},{id: "news-internship-oppening-modelling-turbulence-driven-flow-reattachment-on-suspended-cabins",
+              title: 'Internship oppening   : modelling turbulence driven flow reattachment on suspended cabins.',
+              description: "",
+              section: "News",},{id: "projects-aeroacoustics",
+              title: 'Aeroacoustics',
+              description: "An introduction to acoustics and aeroacoustics",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Aeroacoustics/";
+                },},{id: "projects-block-matrix-approach",
+              title: 'Block matrix approach',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/BlockMatrixSimulations/";
+                },},{id: "projects-decrescendo",
+              title: 'DECRESCENDO',
+              description: "Exploring acoustic mechanisms in hydrogen flames",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Decrescendo/";
+                },},{id: "projects-flexfoil",
+              title: 'FlexFoil',
+              description: "Leveraging structural flexibility to reduce airfoil noise",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/FlexFoil/";
+                },},{id: "projects-fluid-mechanics",
+              title: 'Fluid Mechanics',
+              description: "An introduction to fluid mechanics",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/FluidMechanics/";
+                },},{id: "projects-adjoint-methods",
+              title: 'Adjoint methods',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Notes_on_Adjoints/";
+                },},{id: "projects-symmetries-and-floquet-anzats",
+              title: 'Symmetries and Floquet Anzats',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Notes_on_Floquet/";
+                },},{id: "projects-turb-cab",
+              title: 'TURB-Cab',
+              description: "Studying and modelling the dynamic of cable cars",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/TurbCAB/";
+                },},{
+            id: 'socials-email',
+            title: 'Send email',
+            section: 'Socials',
+            handler: () => {
+              window.open("mailto:%65%64%75%61%72%64%6F.%6D%61%72%74%69%6E%69@%65%6E%73%6D%61.%66%72", "_blank");
+            },
+          },{
+            id: 'socials-orcid',
+            title: 'ORCID',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://orcid.org/0000-0002-3144-5702", "_blank");
+            },
+          },{
+            id: 'socials-google-scholar',
+            title: 'Google Scholar',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://scholar.google.com/citations?user=W00n7fMAAAAJ", "_blank");
+            },
+          },{
+            id: 'socials-researchgate',
+            title: 'ResearchGate',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://www.researchgate.net/profile/Eduardo-Martini/", "_blank");
+            },
+          },{
+            id: 'socials-github',
+            title: 'GitHub',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://github.com/eduardomartini", "_blank");
+            },
+          },{
+            id: 'socials-rss',
+            title: 'RSS Feed',
+            section: 'Socials',
+            handler: () => {
+              window.open("//feed.xml", "_blank");
+            },
+          },{
+          id: 'light-theme',
+          title: 'Change theme to light',
+          description: 'Change the theme of the site to Light',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("light");
+          },
+        },
+        {
+          id: 'dark-theme',
+          title: 'Change theme to dark',
+          description: 'Change the theme of the site to Dark',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("dark");
+          },
+        },
+        {
+          id: 'system-theme',
+          title: 'Use system default theme',
+          description: 'Change the theme of the site to System Default',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("system");
+          },
+        },];
+  </script>
+  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+
+  </body>
+</html>

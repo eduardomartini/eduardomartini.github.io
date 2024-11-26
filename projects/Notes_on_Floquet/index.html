@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <!-- Metadata, OpenGraph and Schema.org -->
+
+
+
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>
+  
+  
+    
+      Symmetries and Floquet Anzats | Eduardo Martini
+    
+  
+</title>
+<meta name="author" content="Eduardo Martini">
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+  <meta name="keywords" content="Fluid Mechanics, Flow Control, Signal Processing, Reduced-order modelling">
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap & MDB -->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+<!-- Bootstrap Table -->
+
+
+<!-- Fonts & Icons -->
+<link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5">
+<link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap">
+
+<!-- Code Syntax Highlighting -->
+<link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light">
+
+
+  <!-- Sidebar Table of Contents -->
+  <link defer href="/assets/css/bootstrap-toc.min.css?6f5af0bb9aab25d79b2448143cbeaa88" rel="stylesheet">
+
+
+<!-- Styles -->
+
+<!-- pseudocode -->
+
+
+
+  <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%8E%93&lt;/text&gt;&lt;/svg&gt;">
+
+<link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+<link rel="canonical" href="http://0.0.0.0:8080/projects/Notes_on_Floquet/">
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script>
+
+  <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark">
+  <script>
+    initTheme();
+  </script>
+
+
+<!-- GeoJSON support via Leaflet -->
+
+
+<!-- diff2html -->
+
+
+
+
+
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+    <!-- Header -->
+    <header>
+  <!-- Nav Bar -->
+  <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+    <div class="container">
+      
+        <a class="navbar-brand title font-weight-lighter" href="//">
+          Eduardo Martini
+        </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          
+
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Home
+              
+            </a>
+          </li>
+
+          <!-- Other pages -->
+          
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  
+                  <a class="nav-link" href="/publications/">Publications
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item active">
+                  
+                  <a class="nav-link" href="/projects/">Projects/Teaching
+                    
+                      <span class="sr-only">(current)</span>
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  
+                  <a class="nav-link" href="/repositories/">Repositories
+                    
+                  </a>
+                </li>
+              
+            
+          
+            
+              
+                
+                <li class="nav-item ">
+                  
+                  <a class="nav-link" href="/cv/">CV
+                    
+                  </a>
+                </li>
+              
+            
+          
+          
+            <!-- Search -->
+            <li class="nav-item">
+              <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+              </button>
+            </li>
+          
+          
+            <!-- Toogle theme mode -->
+            <li class="toggle-container">
+              <button id="light-toggle" title="Change theme">
+                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+              </button>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Scrolling Progress Bar -->
+    <progress id="progress" value="0">
+      <div class="progress-container">
+        <span class="progress-bar"></span>
+      </div>
+    </progress>
+  
+</header>
+
+
+    <!-- Content -->
+    <div class="container mt-5" role="main">
+      
+        
+          <div class="row">
+            <!-- sidebar, which will move to the top on a small screen -->
+            <div class="col-sm-3">
+              <nav id="toc-sidebar" class="sticky-top"></nav>
+            </div>
+            <!-- main content area -->
+            <div class="col-sm-9">
+
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">Symmetries and Floquet Anzats</h1>
+    <p class="post-description"></p>
+  </header>
+
+  <article>
+    <base href="/assets/raw_html_ressources/">
+
+
+
+<meta charset="UTF-8">
+<meta name="generator" content="LaTeX Lwarp package">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes on exploiting symmetries in linear analysis - (Featuring Fourier and Floquet theory)</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css">
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+   subequations: "0",
+   section: "",
+   loader: {
+      load: ['[tex]/tagformat', '[tex]/textmacros'],
+   },
+   startup: {
+      ready() {
+        // These would be replaced by import commands if you wanted to make
+        // a proper extension.
+        const Configuration = MathJax._.input.tex.Configuration.Configuration;
+        const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+        const Macro = MathJax._.input.tex.Symbol.Macro;
+        const TexError = MathJax._.input.tex.TexError.default;
+        const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+        const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //      \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+           ifstar: 'IfstarFunction',
+           ifnextchar: 'IfnextcharFunction',
+           ifblank: 'IfblankFunction',
+           ifstrequal: 'IfstrequalFunction',
+           gsubstitute: 'GsubstituteFunction',
+           seteqnumber: 'SeteqnumberFunction'
+        }, {
+           // This function implements an ifstar macro.
+           IfstarFunction(parser, name) {
+              const resultstar = parser.GetArgument(name);
+              const resultnostar = parser.GetArgument(name);
+              const star = parser.GetStar();                 // true if there is a *
+              useArgument(parser, star ? resultstar : resultnostar);
+           },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+             let whichchar = parser.GetArgument(name);
+             if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+               // $ syntax highlighting
+               whichchar = String.fromCodePoint(parseInt(whichchar));
+             }
+             const resultnextchar = parser.GetArgument(name);
+             const resultnotnextchar = parser.GetArgument(name);
+             const gotchar = (parser.GetNext() === whichchar);
+             useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+             const blankarg = parser.GetArgument(name);
+             const resultblank = parser.GetArgument(name);
+             const resultnotblank = parser.GetArgument(name);
+             const isblank = (blankarg.trim() == "");
+             useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+             const strequalfirst = parser.GetArgument(name);
+             const strequalsecond = parser.GetArgument(name);
+             const resultequal = parser.GetArgument(name);
+             const resultnotequal = parser.GetArgument(name);
+             const isequal = (strequalfirst == strequalsecond);
+             useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+             const gsubfirst = parser.GetArgument(name);
+             const gsubsecond = parser.GetArgument(name);
+             const gsubthird = parser.GetArgument(name);
+             let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+             useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                      return(MathJax.config.section + n);
+                 else
+                      return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+
+
+
+
+<div class="bodywithoutsidetoc">
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<a id="Note_on_floquet-autofile-0"></a>
+
+<!--MathJax customizations:-->
+<div data-nosnippet style="display:none">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber "#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar "\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+\(\require {cancel}\)
+
+\(\newcommand {\R }{\mathbb {R}}\)
+
+\(\newcommand {\C }{\mathbb {C}}\)
+
+\(\newcommand {\Z }{\mathbb {Z}}\)
+
+\(\newcommand {\mymatrix }[1]{\left [\begin {matrix}#1\end {matrix}\right ]}\)
+
+\(\newcommand {\Fourier }[1]{\mathcal {F}\left (#1\right )}\)
+
+\(\newcommand {\iFourier }[1]{\mathcal {F}^{-1}\left (#1\right )}\)
+
+\(\newcommand {\pinv }[1]{\text {pinv}\left (#1\right )}\)
+
+\(\newcommand {\Tr }[1]{Tr\left (#1\right )}\)
+
+\(\newcommand {\norm }[1]{\text {norm}\left (#1\right )}\)
+
+\(\newcommand {\ii }{\mathrm {i}}\)
+
+</div>
+
+<a id="Note_on_floquet-autopage-1"></a>
+<div class="titlepage">
+
+<h2>Notes on exploiting symmetries in linear analysis<br>
+(Featuring Fourier and Floquet theory)</h2>
+
+
+<div class="author">
+
+
+<div class="oneauthor">
+
+<p>
+Eduardo Martini
+</p>
+</div>
+
+</div>
+
+
+<div class="titledate">
+
+<p>
+November 21, 2024
+</p>
+</div>
+
+</div>
+
+<p>
+Exploiting symmetries is crucial to reduce the computational cost of solving some numerical problems, as well as to educe physical mechanisms behind its solutions. In this note, I will discuss how symmetries can be used to simplify the solution of linear differential
+equations, and in particular, how the Floquet theory can be used to simplify the solution of periodic problems.
+</p>
+
+<p>
+The results are general, but we will focus on the linearized Navier-Stokes equations, as an example. In all that follows, assume that the linear operator \(A\) is the linearized incompressible Navier-Stokes operator, and that the eigenmodes are functions of space and time,
+\(u_n(x,t)\).
+</p>
+<!--
+...... section Linear algebra background ......
+-->
+<h4 id="autosec-3">
+<span class="sectionnumber">1 </span>Linear algebra background</h4>
+<a id="Note_on_floquet-autopage-3"></a>
+
+
+<p>
+To introduce the Floquet theory, it is to review some basic concepts of linear algebra. In particular, one results that is not often mentioned in the literature.
+</p>
+<div class="theoremcontents">
+
+<ul class="list" style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="listmarker"><span class="theoremlabel">Theorem 1 </span></span> Let \(A\) and \(B\) be two diagonalizable linear operators. If \(A\) and \(B\) commute, \(AB=BA\) then they have a common set of eigenvectors.
+</p>
+
+</li>
+
+</ul>
+
+</div>
+
+<p>
+This can be shown as following. Consider a set, \(v_i\), of eigenvectors of \(A\), with distinct eigenvalues \(\lambda _i\). Then, we can write \(A v_i = \lambda _i v_i\). Since \(A\) and \(B\) commute, we can write \(A(B v_i) = BA v_i = \lambda _i (B v_i)\).
+This means that \(B v_i\) is also an eigenvector of \(A\) with the same eigenvalue, and thus proportional to \(v\): \(Bv_i = \tilde {\lambda }_i v_i\), i.e., \(v_i\) is also an eigenvector of \(B\).
+</p>
+
+<p>
+The proof for the cases where the eigenvalues are not distinct is similar, but more involved. We will not discuss it here, but the result above is still valid.
+</p>
+<!--
+...... section Exploiting symmetries ......
+-->
+<h4 id="autosec-5">
+<span class="sectionnumber">2 </span>Exploiting symmetries</h4>
+<a id="Note_on_floquet-autopage-5"></a>
+
+
+<p>
+The above theorem can be used to simplify the solution of linear differential equations with a given symmetry. For example, if a flow is symmetric along an axis (i.e., the 2D channel flow is symmetric along the centerline), then the linearized operator will commute with the
+symmetry operator.
+</p>
+
+<p>
+The symmetry operator \(S\) is defined as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{0}\)</span>
+
+<!--
+
+
+                                                                                                                              Su(x, y) = u(−x, y),                                                                                                                             (1)
+
+-->
+
+<p>
+
+\begin{equation}
+S u(x,y) = u(-x,y),
+\end{equation}
+
+</p>
+
+<p>
+and thus
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{1}\)</span>
+
+<!--
+
+
+                                                                                                                              S 2 u(x, y) = u(−x, y),                                                                                                                          (2)
+
+-->
+
+<p>
+
+\begin{equation}
+S^2 u(x,y) = u(-x,y),
+\end{equation}
+
+</p>
+
+<p>
+from which \(S\) has two possible eigenvalues, \(1\) and \(-1\). The corresponding eigenvectors of \(S\) are the symmetric and antisymmetric functions, respectively.
+</p>
+
+<p>
+What the theorem above shows is that we can all eigenvectors of the linearized NS operator will also be eigenvectors of the symmetry operator, and thus will either be symmetric or antisymmetric. This can be used to reduce the size of the linearized operator, and thus the
+computational cost of the solution.
+</p>
+
+<p>
+This result is probably known to you, but the above formalism allows the generalization to other symmetries.
+</p>
+<!--
+...... subsection Fourier modes ......
+-->
+<h5 id="autosec-6">
+<span class="sectionnumber">2.1 </span>Fourier modes</h5>
+<a id="Note_on_floquet-autopage-6"></a>
+
+
+<p>
+Consider an operator, \(A\), which is homogenous in time, (the differential equation does not have explicit time dependence). Then the solution is invariant to time translations,
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{2}\)</span>
+
+<!--
+
+
+                                                                                                                        Au(x, t) = 0 ⇒ Au(x, t + τ ) = 0,                                                                                                   (3)
+
+-->
+
+<p>
+
+\begin{equation}
+A u(x,t) = 0 \Rightarrow A u(x,t+\tau )=0,
+\end{equation}
+
+</p>
+
+<p>
+for any \(\tau \). Consider now a translation operator, \(T_\tau \), which shifts the solution in time by \(\tau \),
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{3}\)</span>
+
+<!--
+
+
+                                                                                                                            Tτ u(x, t) = u(x, t + τ ).                                                                                                      (4)
+
+-->
+
+<p>
+
+\begin{equation}
+T_\tau u(x,t) = u(x,t+\tau ).
+\end{equation}
+
+</p>
+
+<p>
+Complex exponentia, \(u(x)e^{i\omega t}\), are form an eigen-basis for \(T_\tau \), for any value of \(\tau \), as
+</p>
+
+<p>
+\[T_\tau u(x) e^{i\omega t} = u(x) e^{i\omega (t+\tau )} = u(x) e^{i\omega t} e^{i\omega \tau },\]
+</p>
+
+<p>
+i.e., \(u(x) e^{i\omega t}\) is an eigenvector of \(T_\tau \) with eigenvalue \(e^{i\omega \tau }\).
+</p>
+
+<p>
+Now, since \(A\) and \(T_\tau \) commute, we can use the theorem above to show that the eigenvectors of \(A\) are also eigenvectors of \(T_\tau \). This means that the eigenvectors of \(A\) are of the form \(u(x)e^{i\omega t}\), i.e., Fourier modes.
+</p>
+<!--
+...... subsection Floquet theory ......
+-->
+<h5 id="autosec-7">
+<span class="sectionnumber">2.2 </span>Floquet theory</h5>
+<a id="Note_on_floquet-autopage-7"></a>
+
+
+<p>
+Consider now a periodic flow, for which the solution is periodic in time, \(u(x,t+T) = u(x,t)\), for one specific value of \(\tau \). Now the operator commutes with \(T_{\tau }\) for \(\tau =T\) <em>only</em>.
+</p>
+
+<p>
+The eigenvector of \(T_T\) can be written as
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{4}\)</span>
+
+<!--
+
+
+                                                                                                            un (x, t) = h(t, x)eiωn t ,   with h(t + T, x) = h(t, x),                                                                                                   (5)
+
+-->
+
+<p>
+
+\begin{equation}
+u_n(x,t) = h(t,x)e^{i \omega _n t}, \quad \text { with } h(t+T,x) = h(t,x),
+\end{equation}
+
+</p>
+
+<p>
+such that
+</p>
+
+<span class="hidden"> \(\seteqnumber{0}{}{5}\)</span>
+
+<!--
+
+
+                                                                                                                          TT un (x, t) = eiωn T un (x, t).                                                                                                              (6)
+
+-->
+
+<p>
+
+\begin{equation}
+T_T u_n(x,t) = e^{i\omega _n T} u_n(x,t).
+\end{equation}
+
+</p>
+
+<p>
+Thus, any eigenvector of \(A\) can be written as \(u_n(x,t) = h(t,x)e^{i \omega _n t}\), with \(h(t+T,x) = h(t,x)\), i.e., a term periodic in time, and a complex exponential. Note that this means that even if the flow is periodic, the eigenvectors are not (necessary)
+periodic in time. Most importantly, any eigenvector of \(A\) can be written as \(h(t,x)e^{i \omega _n t}\): this is known as the <em>Floquet anzats</em>. Therefore, one can solve only for \(h(t,x)\), on a finite domain, and then multiply by the complex exponential to
+obtain the full solution, valid for any \(t\).
+</p>
+
+<p>
+Another aspect to keep in mind is that the description of the eigenvectors is not unique, i.e.,
+</p>
+
+<p>
+\[h(t,x)e^{i \omega _n t} = \left ( h(t,x) e^{i m \frac {2\pi }{T} t} \right ) e^{i \left (\omega _n-m \frac {2\pi }{T}\right ) t} = \tilde {h}(t,x)e^{i \tilde {\omega }_n t}.\]
+</p>
+
+<p>
+The basis is only uniquely defined if we impose that \(0\le \Re (\omega _n)&lt;2\pi /T\), thus preventing the above ambiguity. However, when solving a problem numerically, this condition may be hard to impose, and thus the basis may not be unique, and we may find
+multiple identical solutions to the problem.
+</p>
+
+<p>
+That is, a “unique” solution, with \(0\le \Re (\omega _n)&lt;2\pi /T\), will be equivalent to another solutions with \(2p\pi /T \le \Re (\omega _n)&lt;2(p+1)\pi /T\). I will call these “Floquet bands” (ps: I made up this name).
+</p>
+<!--
+...... subsubsection Example: channel flow stability ......
+-->
+<h6 id="autosec-8">
+<span class="sectionnumber">2.2.1 </span>Example: channel flow stability</h6>
+<a id="Note_on_floquet-autopage-8"></a>
+
+
+<p>
+Figure <a href="index-0.html#fig:fourrier">1a</a> shows the spectra for a 2D channel flow, with a Reynolds number of 10000, for a streamwise value number of \(1\). The flow is made non-dimensional using the channel half-width, and the streamwise velocity at the
+centerline. The flow is stationary, and thus the problem is time-invariant: i.e., the eigenvectors are Fourier modes in time.
+</p>
+
+<p>
+As a time invariant flow is a particular case of a periodic flow, we can use the Floquet anzats instead. Treating the flow as a periodic flow with period \(T=\pi \), we can use the Floquet anzats to solve the problem. Figure <a href="index-0.html#fig:floquet1">1b</a>
+shows the specrta using the Floquet anzats. We can see that the Fourier spectra can be seen on each Floquet band, and that the Floquet bands are separated by \(2\pi /T=2\). From the discussion in the previous section, we can see that these modes are equivalent, and
+that the Floquet bands are a consequence of the non-uniqueness of the basis.
+</p>
+
+<p>
+In the above, the non-uniqueness is still quite simple and easy to tear apart. By further increasing the period, e.g., \(T=4\pi \), the spectra becomes more complex, as as each “copy” of the Fourier spectra now overlaps. This is shown in Figure <a href="index-0.html#fig:floquet2">1c</a>.
+</p>
+
+<figure id="autoid-1" class="figure ">
+<div class="center">
+<div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; ">
+
+<a id="Note_on_floquet-autopage-10"></a>
+
+
+
+<p>
+
+<a href="Figures/Channel_Fourrier.png" target="_blank"><img src="Figures/Channel_Fourrier.png" style="
+     width:130pt;
+     " class="inlineimage" alt="(image)"></a>
+</p>
+
+<div class="figurecaption">
+
+(a) <a id="fig:fourrier"></a> Fourrier Anzats
+
+</div>
+
+</div>
+<div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; ">
+
+<a id="Note_on_floquet-autopage-11"></a>
+
+
+
+<p>
+
+<a href="Figures/Floquet_pi.png" target="_blank"><img src="Figures/Floquet_pi.png" style="
+     width:130pt;
+     " class="inlineimage" alt="(image)"></a>
+</p>
+
+<div class="figurecaption">
+
+(b) Floquet Anzats, \(T=\pi \)<a id="fig:floquet1"></a>
+
+</div>
+
+</div>
+<div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; ">
+
+<a id="Note_on_floquet-autopage-12"></a>
+
+
+
+<p>
+
+<a href="Figures/Floquet_4pi.png" target="_blank"><img src="Figures/Floquet_4pi.png" style="
+     width:130pt;
+     " class="inlineimage" alt="(image)"></a>
+</p>
+
+<div class="figurecaption">
+
+(c) Floquet Anzats, \(T=4\pi \)<a id="fig:floquet2"></a>
+
+</div>
+
+</div>
+
+
+<div class="figurecaption">
+Figure 1: Spectra for a 2D channel flow, using Fourier (a), and Floquet (b,c) anzates.
+
+</div>
+
+<a id="fig:floquet"></a>
+
+</div>
+
+</figure>
+
+<a id="Note_on_floquet-autofile-last"></a>
+</section>
+
+</main>
+
+</div>
+
+
+
+
+
+
+  </article>
+
+  
+
+  
+</div>
+</div>
+          </div>
+        
+      
+    </div>
+
+    <!-- Footer -->
+    
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      © Copyright 2024
+      Eduardo
+      
+      Martini. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      
+      
+        Last updated: November 26, 2024.
+      
+    </div>
+  </footer>
+
+
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/assets/js/mdb.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    
+  <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script>
+
+
+  <!-- Sidebar Table of Contents -->
+  <script defer src="/assets/js/bootstrap-toc.min.js?c82ff4de8b0955d6ff14f5b05eed7eb6"></script>
+
+
+<!-- Bootstrap Table -->
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script>
+<script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script>
+<script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script>
+
+<!-- Jupyter Open External Links New Tab -->
+<script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script>
+
+
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+
+
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+
+    
+  
+    <!-- MathJax -->
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams',
+        },
+      };
+    </script>
+    <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
+  
+
+
+    
+
+    
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0TMHQ241C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-C0TMHQ241C');
+  </script>
+
+
+
+
+    
+  <!-- Scrolling Progress Bar -->
+  <script type="text/javascript">
+    /*
+     * This JavaScript code has been adapted from the article
+     * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
+     * published on the website https://css-tricks.com on the 7th of May, 2014.
+     * Couple of changes were made to the original code to make it compatible
+     * with the `al-foio` theme.
+     */
+    const progressBar = $('#progress');
+    /*
+     * We set up the bar after all elements are done loading.
+     * In some cases, if the images in the page are larger than the intended
+     * size they'll have on the page, they'll be resized via CSS to accomodate
+     * the desired size. This mistake, however, breaks the computations as the
+     * scroll size is computed as soon as the elements finish loading.
+     * To account for this, a minimal delay was introduced before computing the
+     * values.
+     */
+    window.onload = function () {
+      setTimeout(progressBarSetup, 50);
+    };
+    /*
+     * We set up the bar according to the browser.
+     * If the browser supports the progress element we use that.
+     * Otherwise, we resize the bar thru CSS styling
+     */
+    function progressBarSetup() {
+      if ('max' in document.createElement('progress')) {
+        initializeProgressElement();
+        $(document).on('scroll', function () {
+          progressBar.attr({ value: getCurrentScrollPosition() });
+        });
+        $(window).on('resize', initializeProgressElement);
+      } else {
+        resizeProgressBar();
+        $(document).on('scroll', resizeProgressBar);
+        $(window).on('resize', resizeProgressBar);
+      }
+    }
+    /*
+     * The vertical scroll position is the same as the number of pixels that
+     * are hidden from view above the scrollable area. Thus, a value > 0 is
+     * how much the user has scrolled from the top
+     */
+    function getCurrentScrollPosition() {
+      return $(window).scrollTop();
+    }
+
+    function initializeProgressElement() {
+      let navbarHeight = $('#navbar').outerHeight(true);
+      $('body').css({ 'padding-top': navbarHeight });
+      $('progress-container').css({ 'padding-top': navbarHeight });
+      progressBar.css({ top: navbarHeight });
+      progressBar.attr({
+        max: getDistanceToScroll(),
+        value: getCurrentScrollPosition(),
+      });
+    }
+    /*
+     * The offset between the html document height and the browser viewport
+     * height will be greater than zero if vertical scroll is possible.
+     * This is the distance the user can scroll
+     */
+    function getDistanceToScroll() {
+      return $(document).height() - $(window).height();
+    }
+
+    function resizeProgressBar() {
+      progressBar.css({ width: getWidthPercentage() + '%' });
+    }
+    // The scroll ratio equals the percentage to resize the bar
+    function getWidthPercentage() {
+      return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+    }
+  </script>
+
+
+    
+
+    
+
+    
+
+    
+  <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script>
+  <script>
+    addBackToTop();
+  </script>
+
+
+    
+  <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script>
+  <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys>
+  <script>
+    let searchTheme = determineComputedTheme();
+    const ninjaKeys = document.querySelector('ninja-keys');
+
+    if (searchTheme === 'dark') {
+      ninjaKeys.classList.add('dark');
+    } else {
+      ninjaKeys.classList.remove('dark');
+    }
+
+    const openSearchModal = () => {
+      // collapse navbarNav if expanded on mobile
+      const $navbarNav = $('#navbarNav');
+      if ($navbarNav.hasClass('show')) {
+        $navbarNav.collapse('hide');
+      }
+      ninjaKeys.open();
+    };
+  </script>
+  <script>
+    // get the ninja-keys element
+    const ninja = document.querySelector('ninja-keys');
+
+    // add the home and posts menu items
+    ninja.data = [{
+        id: "nav-home",
+        title: "Home",
+        section: "Navigation",
+        handler: () => {
+          window.location.href = "/";
+        },
+      },{id: "nav-publications",
+              title: "Publications",
+              description: "",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/publications/";
+              },
+            },{id: "nav-projects-teaching",
+              title: "Projects/Teaching",
+              description: "",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/projects/";
+              },
+            },{id: "nav-repositories",
+              title: "Repositories",
+              description: "Public repositories related to research activities.",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/repositories/";
+              },
+            },{id: "nav-cv",
+              title: "CV",
+              description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+              section: "Navigation",
+              handler: () => {
+                window.location.href = "/cv/";
+              },
+            },{id: "news-internship-oppening-experimental-investigation-fluid-structure-interaction-effects-on-flutter-onset",
+              title: 'Internship oppening   : experimental investigation fluid-structure interaction effects on flutter onset.',
+              description: "",
+              section: "News",},{id: "news-internship-oppening-modelling-turbulence-driven-flow-reattachment-on-suspended-cabins",
+              title: 'Internship oppening   : modelling turbulence driven flow reattachment on suspended cabins.',
+              description: "",
+              section: "News",},{id: "projects-aeroacoustics",
+              title: 'Aeroacoustics',
+              description: "An introduction to acoustics and aeroacoustics",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Aeroacoustics/";
+                },},{id: "projects-block-matrix-approach",
+              title: 'Block matrix approach',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/BlockMatrixSimulations/";
+                },},{id: "projects-decrescendo",
+              title: 'DECRESCENDO',
+              description: "Exploring acoustic mechanisms in hydrogen flames",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Decrescendo/";
+                },},{id: "projects-flexfoil",
+              title: 'FlexFoil',
+              description: "Leveraging structural flexibility to reduce airfoil noise",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/FlexFoil/";
+                },},{id: "projects-fluid-mechanics",
+              title: 'Fluid Mechanics',
+              description: "An introduction to fluid mechanics",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/FluidMechanics/";
+                },},{id: "projects-adjoint-methods",
+              title: 'Adjoint methods',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Notes_on_Adjoints/";
+                },},{id: "projects-symmetries-and-floquet-anzats",
+              title: 'Symmetries and Floquet Anzats',
+              description: "",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/Notes_on_Floquet/";
+                },},{id: "projects-turb-cab",
+              title: 'TURB-Cab',
+              description: "Studying and modelling the dynamic of cable cars",
+              section: "Projects",handler: () => {
+                  window.location.href = "/projects/TurbCAB/";
+                },},{
+            id: 'socials-email',
+            title: 'Send email',
+            section: 'Socials',
+            handler: () => {
+              window.open("mailto:%65%64%75%61%72%64%6F.%6D%61%72%74%69%6E%69@%65%6E%73%6D%61.%66%72", "_blank");
+            },
+          },{
+            id: 'socials-orcid',
+            title: 'ORCID',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://orcid.org/0000-0002-3144-5702", "_blank");
+            },
+          },{
+            id: 'socials-google-scholar',
+            title: 'Google Scholar',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://scholar.google.com/citations?user=W00n7fMAAAAJ", "_blank");
+            },
+          },{
+            id: 'socials-researchgate',
+            title: 'ResearchGate',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://www.researchgate.net/profile/Eduardo-Martini/", "_blank");
+            },
+          },{
+            id: 'socials-github',
+            title: 'GitHub',
+            section: 'Socials',
+            handler: () => {
+              window.open("https://github.com/eduardomartini", "_blank");
+            },
+          },{
+            id: 'socials-rss',
+            title: 'RSS Feed',
+            section: 'Socials',
+            handler: () => {
+              window.open("//feed.xml", "_blank");
+            },
+          },{
+          id: 'light-theme',
+          title: 'Change theme to light',
+          description: 'Change the theme of the site to Light',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("light");
+          },
+        },
+        {
+          id: 'dark-theme',
+          title: 'Change theme to dark',
+          description: 'Change the theme of the site to Dark',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("dark");
+          },
+        },
+        {
+          id: 'system-theme',
+          title: 'Use system default theme',
+          description: 'Change the theme of the site to System Default',
+          section: 'Theme',
+          handler: () => {
+            setThemeSetting("system");
+          },
+        },];
+  </script>
+  <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script>
+
+
+  </body>
+</html>
