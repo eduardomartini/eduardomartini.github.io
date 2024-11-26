@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Projects
+title: Projects/Teaching
 permalink: /projects/
 description: 
 nav: true
 nav_order: 3
-display_categories: [On going]
+display_categories: [On going projects,Courses,NotesOn]
 horizontal: false
 ---
 

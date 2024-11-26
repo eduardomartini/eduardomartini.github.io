@@ -1307,3 +1307,7 @@ ninja-keys::part(ninja-input-wrapper) {
   background-color: var(--global-theme-color);
   color: var(--global-text-color);
 }
+
+
+// for use with lwarp
+div.hidden, span.hidden { display: none ; }
