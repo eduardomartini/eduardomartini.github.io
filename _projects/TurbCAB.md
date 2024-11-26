@@ -11,7 +11,7 @@ giscus_comments: false
 
 <div class="row justify-content-sm-center">
   <div class="col-sm-8 mt-3 mt-md-0"  max-width="300px"    max-height="150px" >
-    {% include figure.liquid path="assets/img/TurbCab.jpg" title="FlexFoil Cover Image" class="img-fluid rounded z-depth-1" %}
+    {% include figure.liquid path="assets/img/TurbCab.webp" title="FlexFoil Cover Image" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
 
